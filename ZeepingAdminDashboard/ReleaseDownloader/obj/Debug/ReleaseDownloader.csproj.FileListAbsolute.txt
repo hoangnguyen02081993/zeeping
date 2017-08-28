@@ -1,0 +1,10 @@
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\obj\Debug\ReleaseDownloader.csprojResolveAssemblyReference.cache
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\obj\Debug\ReleaseDownloader.Form1.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\obj\Debug\ReleaseDownloader.Properties.Resources.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\obj\Debug\ReleaseDownloader.csproj.GenerateResource.Cache
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\bin\Debug\ReleaseDownloader.exe.config
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\bin\Debug\ReleaseDownloader.exe
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\bin\Debug\ReleaseDownloader.pdb
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\bin\Debug\mysql.data.dll
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\obj\Debug\ReleaseDownloader.exe
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ReleaseDownloader\obj\Debug\ReleaseDownloader.pdb

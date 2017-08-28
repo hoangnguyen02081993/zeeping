@@ -1,0 +1,118 @@
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Properties.Resources.resources
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe.config
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.pdb
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.exe
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.pdb
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Form_main.resources
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Form_display_product.resources
+c:\users\user\documents\visual studio 2017\Projects\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Form_add_product.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe.config
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.exe
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.pdb
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.pdb
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Form_main.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Properties.Resources.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csproj.GenerateResource.Cache
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\mysql.data.dll
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe.config
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.exe
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.pdb
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csprojResolveAssemblyReference.cache
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Form_main.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Properties.Resources.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csproj.GenerateResource.Cache
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.pdb
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\mysql.data.dll
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe.config
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.pdb
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\mysql.data.dll
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csprojResolveAssemblyReference.cache
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Form_main.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Properties.Resources.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csproj.GenerateResource.Cache
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.exe
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.pdb
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.ShowImage.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.LoginForm.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ConfigForm.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.ShowImage.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ConfigForm.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.LoginForm.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ReplySupportForm.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.ShowImage.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ScrumBoardView.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ConfigForm.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.LoginForm.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ReplySupportForm.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.TicketView.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.CreateTicketView.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.AssginView.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.DetailView.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ColectComment.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ChangePasswordView.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ScrumBoardReviewDone.resources
+H:\Download\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.LoginLogForm.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.AssginView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ColectComment.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.CreateTicketView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.DetailView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.LoginLogForm.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ScrumBoardReviewDone.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ScrumBoardView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.TicketView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ChangePasswordView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ChangeOrderStatusView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.DetailOrderView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.AdditionalProductView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe.config
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.exe
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.pdb
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.exe
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\ZeepingAdminDashboard.pdb
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\bin\Debug\mysql.data.dll
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csprojResolveAssemblyReference.cache
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Form_main.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Properties.Resources.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.ShowImage.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.AssginView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ColectComment.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.CreateTicketView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.DetailView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.LoginLogForm.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ScrumBoardReviewDone.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ScrumBoardView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.TicketView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ChangeOrderStatusView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ChangePasswordView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ConfigForm.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.DetailOrderView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.LoginForm.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ReplySupportForm.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.AdditionalProductView.resources
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.csproj.GenerateResource.Cache
+C:\Users\hau.la\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.ChangeCatogarys.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.ChangeCatogarys.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.ChangeHashTagView.resources
+C:\Users\hoang.h.nguyen\Downloads\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.FAQActionView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.AssginView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ColectComment.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.CreateTicketView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.DetailView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.LoginLogForm.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ScrumBoardReviewDone.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.ScrumBoardView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.Tool.SrumBoard.TicketView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ChangeOrderStatusView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ChangePasswordView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.DetailOrderView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.FAQActionView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.ReplySupportForm.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.AdditionalProductView.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.ChangeCatogarys.resources
+C:\Users\USER\Downloads\Telegram Desktop\ZeepingAdminDashboard\ZeepingAdminDashboard\obj\Debug\ZeepingAdminDashboard.View.Sub.ChangeHashTagView.resources
