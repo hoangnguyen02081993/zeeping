@@ -21,7 +21,7 @@ namespace ZeepingAdminDashboard.View.Sub
             set
             {
                 _ImageAttach = value;
-                pic.Image = Image.FromFile(value.Link);
+                pic.Load(value.Link);
             }
             get
             {
@@ -41,6 +41,19 @@ namespace ZeepingAdminDashboard.View.Sub
                 return _IsChoose;
             }
         }
+        private bool _IsEnable;
+        public bool IsEnable
+        {
+            set
+            {
+                _IsEnable = value;
+                btn_copy.Enabled = _IsEnable;
+            }
+            get
+            {
+                return _IsEnable;
+            }
+        }
         public ImageAttachModelView()
         {
             InitializeComponent();
@@ -48,7 +61,7 @@ namespace ZeepingAdminDashboard.View.Sub
 
         private void btn_copy_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText("[" + _ImageAttach.id.ToString() + "]");
+            Clipboard.SetText("[~" + _ImageAttach.id.ToString() + "]");
         }
 
         private void pic_Click(object sender, EventArgs e)

@@ -49,6 +49,8 @@ namespace ZeepingAdminDashboard.Common
         public static string WebVersion = string.Empty;
         public static string releaseLocation = string.Empty;
 
+        public static string PathImageCollections = string.Empty;
+
         public static bool LoadConfig()
         {
             bool result = false;
@@ -116,6 +118,10 @@ namespace ZeepingAdminDashboard.Common
                         else if ((string)dt.Rows[i][0] == "releaseLocation")
                         {
                             releaseLocation = (string)dt.Rows[i][1];
+                        }
+                        else if ((string)dt.Rows[i][0] == "PathImageCollections")
+                        {
+                            PathImageCollections = (string)dt.Rows[i][1];
                         }
                     }
 

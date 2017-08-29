@@ -821,7 +821,7 @@ namespace ZeepingAdminDashboard.View
                         result = string.Empty;
                         break;
                     }
-                    result = Str + "-" + stt;
+                    if (!rs) result = Str + "-" + stt;
                 }
             }
 

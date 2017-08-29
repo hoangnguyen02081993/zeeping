@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZeepingAdminDashboard.Common;
 using ZeepingAdminDashboard.Controller;
 using ZeepingAdminDashboard.Model;
+using ZeepingAdminDashboard.Model.Local;
 using static ZeepingAdminDashboard.Resources.EnumClass;
 
 namespace ZeepingAdminDashboard.View.Sub
@@ -18,6 +20,9 @@ namespace ZeepingAdminDashboard.View.Sub
         private CollectionsAction action = CollectionsAction.Detail;
         private CollectionsController controller = null;
         private Web_Collections_Model Obj = null;
+
+        private ImageAttachModel FeatureImage = null;
+
         public CollectionsActionView(CollectionsAction Action, ref CollectionsController Controller, Web_Collections_Model obj)
         {
             InitializeComponent();
@@ -30,6 +35,14 @@ namespace ZeepingAdminDashboard.View.Sub
 
         private void CollectionsActionView_Load(object sender, EventArgs e)
         {
+            List<Web_Menu_Model> result = null;
+            if (controller.getAllCatogary(ref result))
+            {
+                chlb_catogary.Items.AddRange(result.ToArray());
+            }
+            chlb_catogary.DisplayMember = "name";
+
+
             switch (action)
             {
                 case CollectionsAction.Add:
@@ -44,9 +57,13 @@ namespace ZeepingAdminDashboard.View.Sub
                     btn_action.Text = "Close";
                     LoadData();
                     tb_name.ReadOnly = true;
-                    rtb_title.ReadOnly = true;
+                    rtb_description.ReadOnly = true;
                     rtb_content.ReadOnly = true;
                     btn_apply.Visible = false;
+                    btn_browser.Enabled = false;
+                    chlb_catogary.Enabled = false;
+                    tb_title.ReadOnly = true;
+                    pn_imageattach.IsEnable = false;
                     break;
             }
         }
@@ -54,27 +71,160 @@ namespace ZeepingAdminDashboard.View.Sub
         {
             if (Obj != null)
             {
-                rtb_title.Text = Obj.title;
+                LoadImageAttach();
+
+                Obj.content = Obj.content.Replace("<br/>", "\n");
+                Obj.description = Obj.description.Replace("<br/>", "\n");
+
+                rtb_description.Text = Obj.description;
                 rtb_content.Text = Obj.content;
                 tb_name.Text = Obj.name;
+                tb_title.Text = Obj.title;
+                FeatureImage = new ImageAttachModel()
+                {
+                    IsLocal = false,
+                    Link = Obj.featureimage
+                };
+                pic_feature.Load(AppConfig.WebUrl + "/" + Common.AppConfig.PathImageCollections + "/" + Obj.id + "/" + Obj.featureimage);
+
+                for (int i = 0; i < chlb_catogary.Items.Count; i++)
+                {
+                    if((chlb_catogary.Items[i] as Web_Menu_Model).id == Obj.relatedmenu)
+                    {
+                        chlb_catogary.SetItemChecked(i, true);
+                    }
+                }
             }
+        }
+        private void LoadImageAttach()
+        {
+            List<string> lstImage = FTPAction.getListFiles(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword, FTPAction.localSourceWeb + "/" + Common.AppConfig.PathImageCollections + "/" + Obj.id, string.Empty);
+            foreach (var item in lstImage)
+            {
+                if (item == Obj.featureimage) continue;
+                var ImageItem = new ImageAttachModel()
+                {
+                    IsLocal = false,
+                    Link = AppConfig.WebUrl + "/" + Common.AppConfig.PathImageCollections + "/" + Obj.id + "/" + item
+                };
+                pn_imageattach.AddImage(ImageItem);
+                Obj.content = Obj.content.Replace(ImageItem.Link, "[~" + ImageItem.id.ToString() + "]");
+            }
+        }
+        private bool SendImage(ref Web_Collections_Model obj, ref List<ImageAttachModel> lstImage)
+        {
+            bool result = true;
+
+            if (FeatureImage.IsLocal)
+            {
+                if (!FTPAction.sendFile(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword,
+                          FTPAction.localSourceWeb + "/" + Common.AppConfig.PathImageCollections + "/" + obj.id, obj.name + Common.Functions.GetExtension(FeatureImage.Link),
+                          Common.Functions.GetPathFileName(FeatureImage.Link), Common.Functions.GetSafeFileName(FeatureImage.Link)))
+                {
+                    return false;
+                }
+                FeatureImage.IsLocal = false;
+                FeatureImage.Link = AppConfig.WebUrl + "/" + Common.AppConfig.PathImageCollections + "/" + obj.id + "/" + obj.name + Common.Functions.GetExtension(FeatureImage.Link);
+                obj.featureimage = obj.name + Common.Functions.GetExtension(FeatureImage.Link);
+            }
+
+                foreach (var item in lstImage)
+            {
+                if (item.IsLocal)
+                {
+                    if (!FTPAction.sendFile(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword,
+                                          FTPAction.localSourceWeb + "/" + Common.AppConfig.PathImageCollections + "/" + obj.id, Common.Functions.GetSafeFileName(item.Link),
+                                          Common.Functions.GetPathFileName(item.Link), Common.Functions.GetSafeFileName(item.Link)))
+                    {
+                        return false;
+                    }
+                    item.IsLocal = true;
+                    item.Link = AppConfig.WebUrl + "/" + Common.AppConfig.PathImageCollections + "/" + obj.id + "/" + Common.Functions.GetSafeFileName(item.Link);
+                    obj.content = obj.content.Replace("[~" + item.id.ToString() + "]", item.Link);
+                }
+            }
+            return result;
         }
 
         private void btn_apply_Click(object sender, EventArgs e)
         {
+            if(tb_name.Equals(string.Empty))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"name\"");
+                return;
+            }
+            if (tb_title.Equals(string.Empty))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"title\"");
+                return;
+            }
+            if (rtb_description.Equals(string.Empty))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"description\"");
+                return;
+            }
+            if (rtb_content.Equals(string.Empty))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"content\"");
+                return;
+            }
+            if(FeatureImage.Equals(null))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"Feature Image\"");
+                return;
+            }
+            if(chlb_catogary.CheckedItems.Count == 0)
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"catogary\"");
+                return;
+            }
+
+            string CollectionLink = string.Empty;
+            if (Obj == null)
+            {
+                CollectionLink = CheckExistCollectionLink(Common.Functions.getWebNameValid(tb_name.Text));
+                if (CollectionLink.Equals(string.Empty))
+                {
+                    Common.Functions.ShowMessgeError("Không có kết nối đến máy chủ");
+                    return;
+                }
+            }
+            else
+            {
+                CollectionLink = Obj.name;
+            }
+
+            var lstImage = pn_imageattach.GetImageAttachList();
+
             Web_Collections_Model obj = new Web_Collections_Model()
             {
                 id = (Obj == null) ? -1 : Obj.id,
-                name = tb_name.Text,
-                title = rtb_title.Text,
+                name = CollectionLink,
+                title = tb_title.Text,
                 content = rtb_content.Text,
-                isdraft = (Obj == null) ? false: Obj.isdraft
+                featureimage = FeatureImage.Link,
+                description = rtb_description.Text,
+                relatedmenu = (int)(chlb_catogary.CheckedItems[0] as Web_Menu_Model).id,
+                isdraft = (Obj == null) ? true: Obj.isdraft
             };
-            if(controller.Save(obj))
+
+            long id = -1;
+            if(controller.Save(obj, ref id))
             {
-                Obj = obj;
-                Common.Functions.ShowMessgeInfo("Success");
-                //TODO preview
+                obj.id = id;
+                if (SendImage(ref obj, ref lstImage))
+                {
+                    controller.Update(obj);
+                    Obj = obj;
+                    Common.Functions.ShowMessgeInfo("Success");
+                    //TODO preview
+                    System.Diagnostics.Process.Start(AppConfig.WebUrl + "/other/collectionPreview.php?id=" + obj.id);
+                }
+                else
+                {
+                    controller.Delete(obj);
+                    Common.Functions.ShowMessgeInfo("Fail");
+                }
             }
             else
             {
@@ -84,23 +234,127 @@ namespace ZeepingAdminDashboard.View.Sub
 
         private void btn_action_Click(object sender, EventArgs e)
         {
+
+            if (tb_name.Equals(string.Empty))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"name\"");
+                return;
+            }
+            if (tb_title.Equals(string.Empty))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"title\"");
+                return;
+            }
+            if (rtb_description.Equals(string.Empty))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"description\"");
+                return;
+            }
+            if (rtb_content.Equals(string.Empty))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"content\"");
+                return;
+            }
+            if (FeatureImage.Equals(null))
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"Feature Image\"");
+                return;
+            }
+            if (chlb_catogary.CheckedItems.Count == 0)
+            {
+                Common.Functions.ShowMessgeError("Chưa nhập thông tin \"catogary\"");
+                return;
+            }
+
+            string CollectionLink = string.Empty;
+            if (Obj == null)
+            {
+                CollectionLink = CheckExistCollectionLink(Common.Functions.getWebNameValid(tb_name.Text));
+                if (CollectionLink.Equals(string.Empty))
+                {
+                    Common.Functions.ShowMessgeError("Không có kết nối đến máy chủ");
+                    return;
+                }
+            }
+            else
+            {
+                CollectionLink = Obj.name;
+            }
+
+            var lstImage = pn_imageattach.GetImageAttachList();
+
             Web_Collections_Model obj = new Web_Collections_Model()
             {
                 id = (Obj == null) ? -1 : Obj.id,
-                name = tb_name.Text,
-                title = rtb_title.Text,
+                name = CollectionLink,
+                title = tb_title.Text,
                 content = rtb_content.Text,
-                isdraft = true
+                featureimage = FeatureImage.Link,
+                description = rtb_description.Text,
+                relatedmenu = (int)(chlb_catogary.CheckedItems[0] as Web_Menu_Model).id,
+                isdraft = false
             };
-            if (controller.Save(obj))
+            long id = -1;
+            if (controller.Save(obj, ref id))
             {
-                Obj = obj;
-                Common.Functions.ShowMessgeInfo("Success");
+                obj.id = id;
+                if (SendImage(ref obj, ref lstImage))
+                {
+                    controller.Update(obj);
+                    Obj = obj;
+                    Common.Functions.ShowMessgeInfo("Success");
+                }
+                else
+                {
+                    controller.Delete(obj);
+                    Common.Functions.ShowMessgeInfo("Fail");
+                }
             }
             else
             {
                 Common.Functions.ShowMessgeInfo("Fail");
             }
+        }
+
+        private void btn_browser_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Multiselect = false;
+                ofd.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    FeatureImage = new ImageAttachModel()
+                    {
+                        IsLocal = true,
+                        Link = ofd.FileName
+                    };
+                    pic_feature.Image = Image.FromFile(ofd.FileName);
+                }
+            }
+        }
+
+        private string CheckExistCollectionLink(string Str)
+        {
+            string result = string.Empty;
+            if (Str != null)
+            {
+                result = Str;
+                int stt = 0;
+                bool rs = false;
+                while (rs == false)
+                {
+                    stt++;
+                    if (!controller.CheckExistCollectionLink(ref rs, result))
+                    {
+                        result = string.Empty;
+                        break;
+                    }
+                    if(!rs) result = Str + "-" + stt;
+                }
+            }
+
+            return result;
         }
     }
 }

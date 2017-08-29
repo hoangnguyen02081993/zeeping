@@ -14,6 +14,7 @@ namespace ZeepingAdminDashboard.Common
 
         public const string localPathDesign = "public_html/image/Design";
         public const string localPathFeaturedImage = "public_html/image/productimage";
+        public const string localSourceWeb = "public_html";
         public static bool sendFile(string Ihost, string Iuser, string Ipassword, string localPath, string localFileName, string pathfile, string SafeFileName)
         {
             bool result = false;
@@ -181,13 +182,18 @@ namespace ZeepingAdminDashboard.Common
                     {
                         string child = data.Substring(data.LastIndexOf(' ') + 1, data.Length - data.LastIndexOf(' ') - 1);
                         if (child.IndexOf(key) >= 0 || key == string.Empty)
-                            result.Add(child);
+                        {
+                            if(!child.Equals(".") && !child.Equals(".."))
+                            {
+                                result.Add(child);
+                            }
+                        }
                     }
                 }
                 sr.Close();
                 response.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
             return result;

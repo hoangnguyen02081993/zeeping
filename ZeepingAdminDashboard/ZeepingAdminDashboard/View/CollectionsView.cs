@@ -153,7 +153,7 @@ namespace ZeepingAdminDashboard.View
         {
             if (dv.SelectedRows.Count == 1)
             {
-                long id = (long)dv.SelectedRows[0].Cells["ID"].Value;
+                long id = (long)dv.SelectedRows[0].Cells["MC"].Value;
                 selectedItem = result.Where(s => s.id == id).FirstOrDefault();
             }
         }
@@ -164,7 +164,7 @@ namespace ZeepingAdminDashboard.View
             {
                 try
                 {
-                    long id = (long)dv.Rows[e.RowIndex].Cells["ID"].Value;
+                    long id = (long)dv.Rows[e.RowIndex].Cells["MC"].Value;
                     selectedItem = result.Where(s => s.id == id).FirstOrDefault();
                 }
                 catch { }

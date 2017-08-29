@@ -1,0 +1,60 @@
+8/29/2017 11:26:44 PM : FILE :image/collections/2/12899Foody_1499853452.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.014 seconds (measured here), 6.28 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:26:44 PM : FILE :image/collections/2/12899Foody_1499853452.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.015 seconds (measured here), 5.87 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:26:45 PM : FILE :image/collections/2/12899Nhahang_1499853243.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.018 seconds (measured here), 6.51 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:36:18 PM : FILE :image/collections/4/234234423-423-432.jpg(response.StatusDescription: 226-File successfully transferred
+226 1.526 seconds (measured here), 58.90 Kbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:36:35 PM : FILE :image/collections/4/12899Foody_1499853452.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.014 seconds (measured here), 6.09 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:36:55 PM : FILE :image/collections/4/12899Nhahang_1499853243.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.017 seconds (measured here), 6.60 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:43:21 PM : FILE :public_html/image/collections/5/423423-324-234-234.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.014 seconds (measured here), 6.30 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:43:21 PM : FILE :public_html/image/collections/5/12899Foody_1499853452.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.014 seconds (measured here), 6.26 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:43:21 PM : FILE :public_html/image/collections/5/12899Nhahang_1499853243.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.020 seconds (measured here), 5.73 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:45:56 PM : FILE :public_html/image/collections/6/4234234-234-23423423-423-32.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.014 seconds (measured here), 6.13 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:45:57 PM : FILE :public_html/image/collections/6/12899Foody_1499853452.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.015 seconds (measured here), 5.67 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:45:57 PM : FILE :public_html/image/collections/6/12899Nhahang_1499853243.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.016 seconds (measured here), 7.00 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:50:26 PM : FILE :public_html/image/collections/7/23423-423423423-4234-23423.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.014 seconds (measured here), 6.09 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:50:27 PM : FILE :public_html/image/collections/7/12899Foody_1499853452.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.017 seconds (measured here), 5.17 Mbytes per second
+)
+----------------------------------------------------------------------------------------
+8/29/2017 11:50:27 PM : FILE :public_html/image/collections/7/12899Nhahang_1499853243.jpg(response.StatusDescription: 226-File successfully transferred
+226 0.016 seconds (measured here), 7.08 Mbytes per second
+)
+----------------------------------------------------------------------------------------

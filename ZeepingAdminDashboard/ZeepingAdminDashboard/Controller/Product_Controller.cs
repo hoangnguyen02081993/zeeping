@@ -206,7 +206,7 @@ namespace ZeepingAdminDashboard.Controller
                 if ((dt = DBHandler.selectDataBase(ref conn,
                                         "`web_menu_group`",
                                           "*",
-                                          "`isPage` = '0'")) != null)
+                                          "`isPage` = '0' and `Isflash` = 0")) != null)
                 {
                     lstResult = new List<Web_Menu_Model>();
                     for (int i = 0; i < dt.Rows.Count; i++)
