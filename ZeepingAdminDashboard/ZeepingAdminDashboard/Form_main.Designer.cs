@@ -36,6 +36,7 @@
             System.Windows.Forms.Button btn_user;
             System.Windows.Forms.Button btn_support_customer;
             System.Windows.Forms.Button btn_FAQ;
+            System.Windows.Forms.Button btn_collections;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gbContent = new System.Windows.Forms.GroupBox();
             this.main_menu = new System.Windows.Forms.MenuStrip();
@@ -58,6 +59,7 @@
             btn_user = new System.Windows.Forms.Button();
             btn_support_customer = new System.Windows.Forms.Button();
             btn_FAQ = new System.Windows.Forms.Button();
+            btn_collections = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.main_menu.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -119,7 +121,7 @@
             // 
             btn_other.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btn_other.ForeColor = System.Drawing.Color.Black;
-            btn_other.Location = new System.Drawing.Point(17, 399);
+            btn_other.Location = new System.Drawing.Point(17, 449);
             btn_other.Margin = new System.Windows.Forms.Padding(2);
             btn_other.Name = "btn_other";
             btn_other.Size = new System.Drawing.Size(170, 47);
@@ -132,7 +134,7 @@
             // 
             btn_user.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btn_user.ForeColor = System.Drawing.Color.Black;
-            btn_user.Location = new System.Drawing.Point(17, 243);
+            btn_user.Location = new System.Drawing.Point(17, 293);
             btn_user.Margin = new System.Windows.Forms.Padding(2);
             btn_user.Name = "btn_user";
             btn_user.Size = new System.Drawing.Size(170, 47);
@@ -145,7 +147,7 @@
             // 
             btn_support_customer.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btn_support_customer.ForeColor = System.Drawing.Color.Black;
-            btn_support_customer.Location = new System.Drawing.Point(17, 297);
+            btn_support_customer.Location = new System.Drawing.Point(17, 347);
             btn_support_customer.Margin = new System.Windows.Forms.Padding(2);
             btn_support_customer.Name = "btn_support_customer";
             btn_support_customer.Size = new System.Drawing.Size(170, 47);
@@ -153,6 +155,19 @@
             btn_support_customer.Text = "Yêu cầu hỗ trợ khách hàng";
             btn_support_customer.UseVisualStyleBackColor = true;
             btn_support_customer.Click += new System.EventHandler(this.btn_support_customer_Click);
+            // 
+            // btn_FAQ
+            // 
+            btn_FAQ.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btn_FAQ.ForeColor = System.Drawing.Color.Black;
+            btn_FAQ.Location = new System.Drawing.Point(17, 398);
+            btn_FAQ.Margin = new System.Windows.Forms.Padding(2);
+            btn_FAQ.Name = "btn_FAQ";
+            btn_FAQ.Size = new System.Drawing.Size(170, 47);
+            btn_FAQ.TabIndex = 5;
+            btn_FAQ.Text = "FAQ";
+            btn_FAQ.UseVisualStyleBackColor = true;
+            btn_FAQ.Click += new System.EventHandler(this.btn_FAQ_Click);
             // 
             // groupBox1
             // 
@@ -162,6 +177,7 @@
             this.groupBox1.Controls.Add(btn_FAQ);
             this.groupBox1.Controls.Add(btn_other);
             this.groupBox1.Controls.Add(btn_listorder);
+            this.groupBox1.Controls.Add(btn_collections);
             this.groupBox1.Controls.Add(btn_product);
             this.groupBox1.Controls.Add(btn_charge);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -288,18 +304,18 @@
             this.lb_user.TabIndex = 0;
             this.lb_user.Text = "User: Unknown";
             // 
-            // btn_FAQ
+            // btn_collections
             // 
-            btn_FAQ.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            btn_FAQ.ForeColor = System.Drawing.Color.Black;
-            btn_FAQ.Location = new System.Drawing.Point(17, 348);
-            btn_FAQ.Margin = new System.Windows.Forms.Padding(2);
-            btn_FAQ.Name = "btn_FAQ";
-            btn_FAQ.Size = new System.Drawing.Size(170, 47);
-            btn_FAQ.TabIndex = 5;
-            btn_FAQ.Text = "FAQ";
-            btn_FAQ.UseVisualStyleBackColor = true;
-            btn_FAQ.Click += new System.EventHandler(this.btn_FAQ_Click);
+            btn_collections.Font = new System.Drawing.Font("Monotype Corsiva", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btn_collections.ForeColor = System.Drawing.Color.Black;
+            btn_collections.Location = new System.Drawing.Point(19, 240);
+            btn_collections.Margin = new System.Windows.Forms.Padding(2);
+            btn_collections.Name = "btn_collections";
+            btn_collections.Size = new System.Drawing.Size(170, 47);
+            btn_collections.TabIndex = 4;
+            btn_collections.Text = "Collections";
+            btn_collections.UseVisualStyleBackColor = true;
+            btn_collections.Click += new System.EventHandler(this.btn_collections_Click);
             // 
             // Form_main
             // 

@@ -23,12 +23,19 @@ namespace ZeepingAdminDashboard.Resources
             Thanhtoan,
             Danhsachdonhang,
             Sanpham,
+            Collections,
             User,
             HotroKhachhang,
             FAQ,
             Khac
         };
         public enum FAQAction
+        {
+            Add,
+            Update,
+            Detail
+        };
+        public enum CollectionsAction
         {
             Add,
             Update,

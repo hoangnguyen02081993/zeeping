@@ -53,6 +53,7 @@
     <Compile Include="Common\Functions.cs" />
     <Compile Include="Common\LogFile.cs" />
     <Compile Include="Common\SMPTGMail.cs" />
+    <Compile Include="Controller\CollectionsController.cs" />
     <Compile Include="Controller\FAQController.cs" />
     <Compile Include="Controller\Login_Controller.cs" />
     <Compile Include="Controller\Main_Controller.cs" />
@@ -69,6 +70,7 @@
     </Compile>
     <Compile Include="Model\AdminUser_Model.cs" />
     <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\Local\ImageAttachModel.cs" />
     <Compile Include="Model\Order_Model.cs" />
     <Compile Include="Model\Product_Color_Model.cs" />
     <Compile Include="Model\Product_Model.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Model\TrackingMail_Model.cs" />
     <Compile Include="Model\UserSupport_Model.cs" />
     <Compile Include="Model\User_Model.cs" />
+    <Compile Include="Model\Web_Collections_Model.cs" />
     <Compile Include="Model\Web_Menu_Model.cs" />
     <Compile Include="Model\Web_page_FAQ.cs" />
     <Compile Include="ObjClass\LablewithConsolasfont.cs">
@@ -151,6 +154,9 @@
     <Compile Include="Tool\SrumBoard\TicketView.Designer.cs">
       <DependentUpon>TicketView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\CollectionsView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\FAQview.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -165,6 +171,12 @@
     </Compile>
     <Compile Include="View\Sub\ChangePasswordView.Designer.cs">
       <DependentUpon>ChangePasswordView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sub\CollectionsActionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Sub\CollectionsActionView.Designer.cs">
+      <DependentUpon>CollectionsActionView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Sub\ConfigForm.cs">
       <SubType>Form</SubType>
@@ -195,6 +207,18 @@
     </Compile>
     <Compile Include="View\Sub\FAQActionView.Designer.cs">
       <DependentUpon>FAQActionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sub\ImageAttachModelView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Sub\ImageAttachModelView.Designer.cs">
+      <DependentUpon>ImageAttachModelView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sub\ImageAttachPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Sub\ImageAttachPanel.Designer.cs">
+      <DependentUpon>ImageAttachPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Sub\LoginForm.cs">
       <SubType>Form</SubType>
@@ -293,6 +317,9 @@
     <EmbeddedResource Include="View\Sub\ChangePasswordView.resx">
       <DependentUpon>ChangePasswordView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Sub\CollectionsActionView.resx">
+      <DependentUpon>CollectionsActionView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Sub\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,6 +328,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Sub\FAQActionView.resx">
       <DependentUpon>FAQActionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Sub\ImageAttachModelView.resx">
+      <DependentUpon>ImageAttachModelView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Sub\ImageAttachPanel.resx">
+      <DependentUpon>ImageAttachPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Sub\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

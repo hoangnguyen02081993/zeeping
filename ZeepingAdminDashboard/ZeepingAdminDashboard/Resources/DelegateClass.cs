@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZeepingAdminDashboard.Tool.SrumBoard;
+using ZeepingAdminDashboard.View.Sub;
 
 namespace ZeepingAdminDashboard.Resources
 {
@@ -14,5 +15,7 @@ namespace ZeepingAdminDashboard.Resources
 
         public delegate void PanelClick(TicketModel mode);
         public delegate void TicketViewClick(TicketModel mode);
+
+        public delegate void ImageAttachChoosed(ImageAttachModelView view, Guid id);
     }
 }

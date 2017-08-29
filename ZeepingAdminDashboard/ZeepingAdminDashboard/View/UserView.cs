@@ -390,10 +390,10 @@ namespace ZeepingAdminDashboard.View
             {
                 dv.Rows.Add(result[i].id, result[i].email, lstStyle.Where(s => s.Id == result[i].style_id).FirstOrDefault().Name, lstColor.Where(s => s.Id == result[i].color_id).FirstOrDefault().Name, result[i].date.ToString("yyyy-MM-dd HH:mm:ss"));
                 Color c = lstColor.Where(s => s.Id == result[i].color_id).FirstOrDefault().Colors;
-                dv.Rows[dv.Rows.Count - 1].Cells[2].Style.BackColor = c;
+                dv.Rows[dv.Rows.Count - 1].Cells[3].Style.BackColor = c;
                 if((c.R + c.G + c.B) /3 <128)
                 {
-                    dv.Rows[dv.Rows.Count - 1].Cells[2].Style.ForeColor = Color.White;
+                    dv.Rows[dv.Rows.Count - 1].Cells[3].Style.ForeColor = Color.White;
                 }
                 
             }

@@ -105,36 +105,45 @@ namespace ZeepingAdminDashboard.View
 
         private void ItemDetail_Click(object sender, EventArgs e)
         {
-            using (FAQActionView view = new FAQActionView(Resources.EnumClass.FAQAction.Detail,
-                                             ref controller,
-                                             selectedItem))
+            if (selectedItem != null)
             {
-                view.ShowDialog();
+                using (FAQActionView view = new FAQActionView(Resources.EnumClass.FAQAction.Detail,
+                                                 ref controller,
+                                                 selectedItem))
+                {
+                    view.ShowDialog();
+                }
             }
         }
 
         private void ItemDelete_Click(object sender, EventArgs e)
         {
-            if(controller.Delete(selectedItem))
+            if (selectedItem != null)
             {
-                Common.Functions.ShowMessgeInfo("Delete Success");
-                Btn_Refresh_Click(null, null);
-            }
-            else
-            {
-                Common.Functions.ShowMessgeInfo("Delete Fail");
+                if (controller.Delete(selectedItem))
+                {
+                    Common.Functions.ShowMessgeInfo("Delete Success");
+                    Btn_Refresh_Click(null, null);
+                }
+                else
+                {
+                    Common.Functions.ShowMessgeInfo("Delete Fail");
+                }
             }
         }
 
         private void ItemUpdate_Click(object sender, EventArgs e)
         {
-            using (FAQActionView view = new FAQActionView(Resources.EnumClass.FAQAction.Update,
-                                                         ref controller,
-                                                         selectedItem))
+            if (selectedItem != null)
             {
-                if(view.ShowDialog() == DialogResult.OK)
+                using (FAQActionView view = new FAQActionView(Resources.EnumClass.FAQAction.Update,
+                                                             ref controller,
+                                                             selectedItem))
                 {
-                    Btn_Refresh_Click(null, null);
+                    if (view.ShowDialog() == DialogResult.OK)
+                    {
+                        Btn_Refresh_Click(null, null);
+                    }
                 }
             }
         }
@@ -169,6 +178,7 @@ namespace ZeepingAdminDashboard.View
             {
                 Functions.ShowMessgeInfo("Search thất bại");
             }
+            selectedItem = null;
         }
 
         private void Dv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

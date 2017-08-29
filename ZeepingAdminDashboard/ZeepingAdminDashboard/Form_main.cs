@@ -114,6 +114,10 @@ namespace ZeepingAdminDashboard
             FAQView.Name = "FAQView";
             this.gbContent.Controls.Add(FAQView);
 
+            CollectionsView clsView = new CollectionsView(gbContent.Size);
+            clsView.Name = "clsView";
+            this.gbContent.Controls.Add(clsView);
+
             setContent(EnumClass.Functions.Huongdansudung);
 
             Permission = EnumClass.PermissionUser.Unknown;
@@ -335,6 +339,27 @@ namespace ZeepingAdminDashboard
                         Functions.ShowMessgeError("Bạn không có quyền truy cập");
                     }
                     break;
+                case EnumClass.Functions.Collections:
+                    if(true)
+                    //if (Permission != EnumClass.PermissionUser.Unknown)
+                    {
+                        foreach (Control item in gbContent.Controls)
+                        {
+                            if (item.Name == "clsView")
+                            {
+                                item.Visible = true;
+                            }
+                            else
+                            {
+                                item.Visible = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Functions.ShowMessgeError("Bạn không có quyền truy cập");
+                    }
+                    break;
             }
         }
 
@@ -432,6 +457,11 @@ namespace ZeepingAdminDashboard
         private void btn_FAQ_Click(object sender, EventArgs e)
         {
             setContent(EnumClass.Functions.FAQ);
+        }
+
+        private void btn_collections_Click(object sender, EventArgs e)
+        {
+            setContent(EnumClass.Functions.Collections);
         }
     }
 }
