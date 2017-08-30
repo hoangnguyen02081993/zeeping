@@ -14,7 +14,7 @@ namespace ZeepingAdminDashboard.Common
 {
     public class AppConfig
     {
-        public static string VersionNumber = "v3.8";
+        public static string VersionNumber = "v3.9";
         public static string Version = "Zeeping.com - Dashboard Admin " + VersionNumber;
 
         private const string ConfigFileName = "config.data";

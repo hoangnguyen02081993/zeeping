@@ -75,6 +75,20 @@ namespace ZeepingAdminDashboard.View.Sub
 
             return result;
         }
+        public void StoreImageAttachList(List<ImageAttachModel> lstImage)
+        {
+            foreach (ImageAttachModel item in lstImage)
+            {
+                foreach (ImageAttachModelView item1 in pn_image.Controls)
+                {
+                    if (item1.ImageAttach.id.Equals(item.id))
+                    {
+                        item1.ImageAttach = item;
+                        break;
+                    }
+            }
+            }
+        }
         public void ClearDeletedImageAttachList()
         {
             DeletedImageAttachList.Clear();

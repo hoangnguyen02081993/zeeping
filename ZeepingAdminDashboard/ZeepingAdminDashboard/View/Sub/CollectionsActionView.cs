@@ -129,7 +129,8 @@ namespace ZeepingAdminDashboard.View.Sub
                     Link = AppConfig.WebUrl + "/" + Common.AppConfig.PathImageCollections + "/" + Obj.id + "/" + item
                 };
                 pn_imageattach.AddImage(ImageItem);
-                Obj.content = Obj.content.Replace(ImageItem.Link, "[~" + ImageItem.id.ToString() + "]");
+                if(action != Resources.EnumClass.CollectionsAction.Detail)
+                    Obj.content = Obj.content.Replace(ImageItem.Link, "[~" + ImageItem.id.ToString() + "]");
             }
         }
         private bool SendImage(ref Web_Collections_Model obj, ref List<ImageAttachModel> lstImage,ref List<ImageAttachModel> DeleteImageList)
@@ -146,8 +147,8 @@ namespace ZeepingAdminDashboard.View.Sub
                 }
                 FeatureImage.IsLocal = false;
                 FeatureImage.Link = AppConfig.WebUrl + "/" + Common.AppConfig.PathImageCollections + "/" + obj.id + "/" + obj.name + Common.Functions.GetExtension(FeatureImage.Link);
-                obj.featureimage = obj.name + Common.Functions.GetExtension(FeatureImage.Link);
             }
+            obj.featureimage = obj.name + Common.Functions.GetExtension(FeatureImage.Link);
 
             foreach (var item in lstImage)
             {
@@ -159,10 +160,10 @@ namespace ZeepingAdminDashboard.View.Sub
                     {
                         return false;
                     }
-                    item.IsLocal = true;
+                    item.IsLocal = false;
                     item.Link = AppConfig.WebUrl + "/" + Common.AppConfig.PathImageCollections + "/" + obj.id + "/" + Common.Functions.GetSafeFileName(item.Link);
-                    obj.content = obj.content.Replace("[~" + item.id.ToString() + "]", item.Link);
                 }
+                obj.content = obj.content.Replace("[~" + item.id.ToString() + "]", item.Link);
             }
             foreach (var item in DeleteImageList)
             {
@@ -223,6 +224,8 @@ namespace ZeepingAdminDashboard.View.Sub
                 CollectionLink = Obj.name;
             }
 
+
+
             var lstImage = pn_imageattach.GetImageAttachList();
             var DeletedImageAttachList = pn_imageattach.DeletedImageAttachList;
 
@@ -246,6 +249,7 @@ namespace ZeepingAdminDashboard.View.Sub
                 {
                     controller.Update(obj);
                     pn_imageattach.ClearDeletedImageAttachList();
+                    //pn_imageattach.StoreImageAttachList(lstImage);
                     Obj = obj;
                     Common.Functions.ShowMessgeInfo("Success");
                     //TODO preview
@@ -334,6 +338,7 @@ namespace ZeepingAdminDashboard.View.Sub
                 {
                     controller.Update(obj);
                     pn_imageattach.ClearDeletedImageAttachList();
+                    //pn_imageattach.StoreImageAttachList(lstImage);
                     Obj = obj;
                     Common.Functions.ShowMessgeInfo("Success");
                 }

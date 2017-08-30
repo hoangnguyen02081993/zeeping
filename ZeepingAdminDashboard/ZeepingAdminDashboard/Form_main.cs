@@ -340,8 +340,8 @@ namespace ZeepingAdminDashboard
                     }
                     break;
                 case EnumClass.Functions.Collections:
-                    if(true)
-                    //if (Permission != EnumClass.PermissionUser.Unknown)
+                    //if(true)
+                    if (Permission != EnumClass.PermissionUser.Unknown)
                     {
                         foreach (Control item in gbContent.Controls)
                         {
