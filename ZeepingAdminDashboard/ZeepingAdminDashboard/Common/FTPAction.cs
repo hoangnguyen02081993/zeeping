@@ -198,6 +198,35 @@ namespace ZeepingAdminDashboard.Common
             }
             return result;
         }
+        public static bool deleteDirectory(string Ihost, string Iuser, string Ipassword, string directoryName)
+        {
+            bool result = false;
+            try
+            {
+                /* Create an FTP Request */
+                FtpWebRequest  ftpRequest = (FtpWebRequest)WebRequest.Create("ftp://" + Ihost + "/" + directoryName);
+                /* Log in to the FTP Server with the User Name and Password Provided */
+                ftpRequest.Credentials = new NetworkCredential(Iuser, Ipassword);
+                /* When in doubt, use these options */
+                ftpRequest.UseBinary = true;
+                ftpRequest.UsePassive = true;
+                ftpRequest.KeepAlive = true;
+                /* Specify the Type of FTP Request */
+                ftpRequest.Method = WebRequestMethods.Ftp.RemoveDirectory;
+
+                /* Establish Return Communication with the FTP Server */
+                FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                /* Resource Cleanup */
+                ftpResponse.Close();
+                ftpRequest = null;
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return result;
+        }
         public static bool FtpDirectoryExists(string directoryPath, string ftpUser, string ftpPassword)
         {
             bool IsExists = true;

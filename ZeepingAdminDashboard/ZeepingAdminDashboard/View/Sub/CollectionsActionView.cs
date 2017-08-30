@@ -29,7 +29,21 @@ namespace ZeepingAdminDashboard.View.Sub
 
             action = Action;
             controller = Controller;
-            Obj = obj;
+            if(obj != null)
+            {
+                Obj = new Web_Collections_Model()
+                {
+                    id = obj.id,
+                    content = obj.content,
+                    createdDate = obj.createdDate,
+                    description = obj.description,
+                    featureimage = obj.featureimage,
+                    name = obj.name,
+                    relatedmenu = obj.relatedmenu,
+                    title = obj.title,
+                    isdraft = obj.isdraft
+                };
+            }
             this.Load += CollectionsActionView_Load;
         }
 
@@ -66,7 +80,14 @@ namespace ZeepingAdminDashboard.View.Sub
                     pn_imageattach.IsEnable = false;
                     break;
             }
+            pn_imageattach.OnImageAttachDeleted += Pn_imageattach_OnImageAttachDeleted;
         }
+
+        private void Pn_imageattach_OnImageAttachDeleted(ImageAttachModel view)
+        {
+            rtb_content.Text = rtb_content.Text.Replace("[~" + view.id.ToString() + "]", string.Empty);
+        }
+
         private void LoadData()
         {
             if (Obj != null)
@@ -111,7 +132,7 @@ namespace ZeepingAdminDashboard.View.Sub
                 Obj.content = Obj.content.Replace(ImageItem.Link, "[~" + ImageItem.id.ToString() + "]");
             }
         }
-        private bool SendImage(ref Web_Collections_Model obj, ref List<ImageAttachModel> lstImage)
+        private bool SendImage(ref Web_Collections_Model obj, ref List<ImageAttachModel> lstImage,ref List<ImageAttachModel> DeleteImageList)
         {
             bool result = true;
 
@@ -128,7 +149,7 @@ namespace ZeepingAdminDashboard.View.Sub
                 obj.featureimage = obj.name + Common.Functions.GetExtension(FeatureImage.Link);
             }
 
-                foreach (var item in lstImage)
+            foreach (var item in lstImage)
             {
                 if (item.IsLocal)
                 {
@@ -141,6 +162,14 @@ namespace ZeepingAdminDashboard.View.Sub
                     item.IsLocal = true;
                     item.Link = AppConfig.WebUrl + "/" + Common.AppConfig.PathImageCollections + "/" + obj.id + "/" + Common.Functions.GetSafeFileName(item.Link);
                     obj.content = obj.content.Replace("[~" + item.id.ToString() + "]", item.Link);
+                }
+            }
+            foreach (var item in DeleteImageList)
+            {
+                if (!item.IsLocal)
+                {
+                    FTPAction.deleteFile(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword,
+                                          FTPAction.localSourceWeb + "/" + Common.AppConfig.PathImageCollections + "/" + obj.id, Common.Functions.GetSafeFileName(item.Link));
                 }
             }
             return result;
@@ -195,6 +224,7 @@ namespace ZeepingAdminDashboard.View.Sub
             }
 
             var lstImage = pn_imageattach.GetImageAttachList();
+            var DeletedImageAttachList = pn_imageattach.DeletedImageAttachList;
 
             Web_Collections_Model obj = new Web_Collections_Model()
             {
@@ -212,9 +242,10 @@ namespace ZeepingAdminDashboard.View.Sub
             if(controller.Save(obj, ref id))
             {
                 obj.id = id;
-                if (SendImage(ref obj, ref lstImage))
+                if (SendImage(ref obj, ref lstImage, ref DeletedImageAttachList))
                 {
                     controller.Update(obj);
+                    pn_imageattach.ClearDeletedImageAttachList();
                     Obj = obj;
                     Common.Functions.ShowMessgeInfo("Success");
                     //TODO preview
@@ -282,6 +313,7 @@ namespace ZeepingAdminDashboard.View.Sub
             }
 
             var lstImage = pn_imageattach.GetImageAttachList();
+            var DeletedImageAttachList = pn_imageattach.DeletedImageAttachList;
 
             Web_Collections_Model obj = new Web_Collections_Model()
             {
@@ -298,9 +330,10 @@ namespace ZeepingAdminDashboard.View.Sub
             if (controller.Save(obj, ref id))
             {
                 obj.id = id;
-                if (SendImage(ref obj, ref lstImage))
+                if (SendImage(ref obj, ref lstImage, ref DeletedImageAttachList))
                 {
                     controller.Update(obj);
+                    pn_imageattach.ClearDeletedImageAttachList();
                     Obj = obj;
                     Common.Functions.ShowMessgeInfo("Success");
                 }

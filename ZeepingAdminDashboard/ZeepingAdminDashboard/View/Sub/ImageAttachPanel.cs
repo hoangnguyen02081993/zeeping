@@ -8,11 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZeepingAdminDashboard.Model.Local;
+using static ZeepingAdminDashboard.Resources.DelegateClass;
 
 namespace ZeepingAdminDashboard.View.Sub
 {
     public partial class ImageAttachPanel : UserControl
     {
+        public List<ImageAttachModel> DeletedImageAttachList { private set; get; }
+        public event ImageAttachDeleted OnImageAttachDeleted = null;
+
+
         private bool _IsEnable;
         public bool IsEnable
         {
@@ -35,15 +40,12 @@ namespace ZeepingAdminDashboard.View.Sub
         {
             InitializeComponent();
             IsEnable = true;
+            DeletedImageAttachList = new List<ImageAttachModel>();
         }
         public void AddImage(ImageAttachModel imgM)
         {
             ImageAttachModelView view = new ImageAttachModelView();
-            view.ImageAttach = new Model.Local.ImageAttachModel()
-            {
-                IsLocal = imgM.IsLocal,
-                Link = imgM.Link,
-            };
+            view.ImageAttach = imgM;
             view.OnImageAttachChoosed += View_OnImageAttachChoosed;
             view.IsEnable = IsEnable;
             pn_image.Controls.Add(view);
@@ -72,6 +74,10 @@ namespace ZeepingAdminDashboard.View.Sub
             }
 
             return result;
+        }
+        public void ClearDeletedImageAttachList()
+        {
+            DeletedImageAttachList.Clear();
         }
 
         private void btn_browser_Click(object sender, EventArgs e)
@@ -123,6 +129,14 @@ namespace ZeepingAdminDashboard.View.Sub
                     if((item as ImageAttachModelView).IsChoose)
                     {
                         pn_image.Controls.Remove(item as Control);
+                        if(!(item as ImageAttachModelView).ImageAttach.IsLocal)
+                        {
+                            DeletedImageAttachList.Add((item as ImageAttachModelView).ImageAttach);
+                        }
+                        if(OnImageAttachDeleted != null)
+                        {
+                            OnImageAttachDeleted((item as ImageAttachModelView).ImageAttach);
+                        }
                         (item as Control).Dispose();
                         OnAddorRemoveImage();
                         break;

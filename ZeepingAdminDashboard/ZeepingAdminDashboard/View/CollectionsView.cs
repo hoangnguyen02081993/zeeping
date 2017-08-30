@@ -104,9 +104,9 @@ namespace ZeepingAdminDashboard.View
             dv.Columns.Add("TC", "Title collection");
             dv.Columns.Add("SS", "Bản chính thức");
             dv.Columns["MC"].Width = 50;
-            dv.Columns["NC"].Width = 200;
+            dv.Columns["NC"].Width = 150;
             dv.Columns["TC"].Width = 350;
-            dv.Columns["SS"].Width = 50;
+            dv.Columns["SS"].Width = 100;
             dv.Rows.Add(10);
             dv.ReadOnly = true;
             dv.AllowUserToAddRows = false;
@@ -192,6 +192,7 @@ namespace ZeepingAdminDashboard.View
                 {
                     Common.Functions.ShowMessgeInfo("Delete Success");
                     Btn_Search_Click(null, null);
+                    selectedItem = null;
                 }
                 else
                 {
@@ -211,6 +212,7 @@ namespace ZeepingAdminDashboard.View
                     if (view.ShowDialog() == DialogResult.OK)
                     {
                         Btn_Search_Click(null, null);
+                        selectedItem = null;
                     }
                 }
             }
@@ -225,6 +227,7 @@ namespace ZeepingAdminDashboard.View
                 if (view.ShowDialog() == DialogResult.OK)
                 {
                     Btn_Search_Click(null, null);
+                    selectedItem = null;
                 }
             }
         }
@@ -235,7 +238,7 @@ namespace ZeepingAdminDashboard.View
             int condition = (Index + 10 > result.Count) ? result.Count : Index + 10;
             for (int i = Index; i < condition; i++)
             {
-                dv.Rows.Add(result[i].id, result[i].name, result[i].title, result[i].isdraft);
+                dv.Rows.Add(result[i].id, result[i].name, result[i].title, !result[i].isdraft);
             }
         }
 

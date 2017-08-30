@@ -157,6 +157,7 @@ namespace ZeepingAdminDashboard.Controller
                                             "`id` = " + Obj.id))
                 {
                     result = true;
+                    DeleteFileCollection(Obj);
                 }
             }
             catch (Exception ex)
@@ -166,6 +167,7 @@ namespace ZeepingAdminDashboard.Controller
 
             return result;
         }
+
         public bool Add(Web_Collections_Model Obj)
         {
             bool result = false;
@@ -271,6 +273,15 @@ namespace ZeepingAdminDashboard.Controller
                 LogFile.writeLog(LogFile.DIR, "Exception" + LogFile.getTimeStringNow() + ".txt", LogFile.Filemode.GHIDE, ex.Message);
             }
             return result;
+        }
+        public void DeleteFileCollection(Web_Collections_Model Obj)
+        {
+            List<string> lstImage = FTPAction.getListFiles(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword, FTPAction.localSourceWeb + "/" + Common.AppConfig.PathImageCollections + "/" + Obj.id, string.Empty);
+            foreach (var item in lstImage)
+            {
+                FTPAction.deleteFile(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword, FTPAction.localSourceWeb + "/" + Common.AppConfig.PathImageCollections + "/" + Obj.id, item);
+            }
+            FTPAction.deleteDirectory(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword, FTPAction.localSourceWeb + "/" + Common.AppConfig.PathImageCollections + "/" + Obj.id);
         }
     }
 }
