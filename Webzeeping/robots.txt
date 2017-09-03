@@ -1,0 +1,11 @@
+User-agent: *
+#Crawl-Delay: 10
+Disallow: /order/
+Disallow: /release/
+Disallow: /config/
+Disallow: /search.php
+Disallow: /products.php
+Disallow: /page.php
+Disallow: /catogary.php
+Disallow: /404.php
+Sitemap: http://zeeping.com/sitemap.xml
