@@ -160,13 +160,13 @@ namespace ZeepingAdminDashboard.Controller
             result += "After you were buying completely at zeeping store, we are supplying your Zeeping’s account which support and bring you superior advantages to new customer.<br/>";
             result += "Ex: You will get a 10% discount on the next product<br/><br/>";
             result += "Click here to active your zeeping acccount:<br/>";
-            result += "http://zeeping.com/customer/register.php?u=" + Functions.GetMD5(UserName) + "<br/><br/>"; // link kich hoat
+            result += "<a href=\"http://zeeping.com/customer/register.php?u=" + Functions.GetMD5(UserName) + "\" >http://zeeping.com/customer/register.php?u=" + Functions.GetMD5(UserName) + "</a><br/><br/>"; // link kich hoat
             result += "Please read particular zeeping guide for more useful. This link is below: <br/>";
-            result += "http://zeeping.com/zeeping-guide/<br/>"; // link huong dan
+            result += "<a href=\"http://zeeping.com/zeeping-guide/\">http://zeeping.com/zeeping-guide/</a><br/>"; // link huong dan
             result += "If you wanna design any product, don’t worry and please contact us to help you in anytime.<br/>";
             result += "Your happiness is my fun!<br/>";
             result += "The Zeeping Team!<br/><br/>";
-            result += "Support Link: http://zeeping.com/customer/support.php<br/>";// link ho tro khac hang
+            result += "Support Link: <a href=\"http://zeeping.com/customer/support.php\">http://zeeping.com/customer/support.php</a><br/>";// link ho tro khac hang
             result += "<span style=\"font-size:8pt;font-style:italic\">(This is an automatic mail. Doesn't reply. Thanks)</span><br/><br/>";
             result += "<img src=\"http://zeeping.com/image/common/logo.jpg\" style=\"width:200px;height:100px\" />";
             return result;
