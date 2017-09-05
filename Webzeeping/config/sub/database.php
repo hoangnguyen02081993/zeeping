@@ -829,11 +829,11 @@ function InsertReview($reviewInfo)
     
     $conn = db_connect();
     
-    $sql_query = "INSERT INTO `web_page_testimonial`(`testimonial`, `createguest`) VALUES (";
+    $sql_query = "INSERT INTO `web_page_testimonial`(`testimonial`, `createguest`, `createuser`) VALUES (";
     
     $sql_query .= "'" . str_replace("'", "\'", $reviewInfo["comment"]) . "',";
-    $sql_query .= "'" . str_replace("'", "\'", $reviewInfo["name"]) . "'";
-    
+    $sql_query .= "'" . str_replace("'", "\'", $reviewInfo["name"]) . "',";
+    $sql_query .= "'" . str_replace("'", "\'", $reviewInfo["username"]) . "'";
     $sql_query .= ")";
     
     //echo $sql_query;
