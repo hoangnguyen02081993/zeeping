@@ -144,9 +144,9 @@ namespace ZeepingAdminDashboard.View
             dv.Size = new Size(700, 250);
             dv.Columns.Add("MSP","Mã sản phẩm");
             dv.Columns.Add("TSP","Tên sản phẩm");
-            dv.Columns.Add("ASP","Ảnh sản phẩm");
+            dv.Columns.Add("HTG","Hash Tag");
             dv.Columns["TSP"].Width = 270;
-            dv.Columns["ASP"].Width = 280;
+            dv.Columns["HTG"].Width = 280;
             dv.Rows.Add(10);
             dv.ReadOnly = true;
             dv.AllowUserToAddRows = false;
@@ -157,11 +157,17 @@ namespace ZeepingAdminDashboard.View
             ctm = new ContextMenuStrip();
             ctm.Size = new System.Drawing.Size(105, 26);
 
-            ToolStripMenuItem itemChangestatus = new ToolStripMenuItem();
-            itemChangestatus.Text = "Change Catogary";
-            itemChangestatus.Click += ItemChangestatus_Click;
-            itemChangestatus.Size = new System.Drawing.Size(104, 22);
-            ctm.Items.Add(itemChangestatus);
+            ToolStripMenuItem itemEditProduct = new ToolStripMenuItem();
+            itemEditProduct.Text = "Edit";
+            itemEditProduct.Click += ItemEditProduct_Click;
+            itemEditProduct.Size = new System.Drawing.Size(104, 22);
+            ctm.Items.Add(itemEditProduct);
+
+            ToolStripMenuItem itemDeleteProduct = new ToolStripMenuItem();
+            itemDeleteProduct.Text = "Delete";
+            itemDeleteProduct.Click += ItemDeleteProduct_Click;
+            itemDeleteProduct.Size = new System.Drawing.Size(104, 22);
+            ctm.Items.Add(itemDeleteProduct);
 
             ToolStripMenuItem itemChangeHashtag = new ToolStripMenuItem();
             itemChangeHashtag.Text = "Change HashTag";
@@ -169,9 +175,178 @@ namespace ZeepingAdminDashboard.View
             itemChangeHashtag.Size = new System.Drawing.Size(104, 22);
             ctm.Items.Add(itemChangeHashtag);
 
+            ToolStripMenuItem itemChangestatus = new ToolStripMenuItem();
+            itemChangestatus.Text = "Change Catogary";
+            itemChangestatus.Click += ItemChangestatus_Click;
+            itemChangestatus.Size = new System.Drawing.Size(104, 22);
+            ctm.Items.Add(itemChangestatus);
+
+            ToolStripMenuItem itemFeatureImage = new ToolStripMenuItem();
+            itemFeatureImage.Text = "Change Feature Image";
+            itemFeatureImage.Click += ItemFeatureImage_Click;
+            itemFeatureImage.Size = new System.Drawing.Size(104, 22);
+            ctm.Items.Add(itemFeatureImage);
+
             dv.ContextMenuStrip = ctm;
 
             #endregion
+        }
+
+        private void ItemDeleteProduct_Click(object sender, EventArgs e)
+        {
+            if (dv.SelectedRows.Count == 1)
+            {
+                long id = (long)dv.SelectedRows[0].Cells["MSP"].Value;
+                if(Functions.ShowYesNoQuestion("Bạn có chắc chắn muốn Delete không ?") == DialogResult.Yes)
+                {
+                    var Product = result.Where(p => p.product_id == id).FirstOrDefault();
+                    if(Product != null)
+                    {
+                        if(getParent().controller.DeleteProduct(Product))
+                        {
+                            Functions.ShowMessgeInfo("Delete success");
+                            Btn_Search_Click(null, null);
+                        }
+                        else
+                        {
+                            Functions.ShowMessgeError("Delete Failed");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (dv.SelectedCells.Count == 1)
+                {
+                    long id = (long)dv.Rows[dv.SelectedCells[0].RowIndex].Cells["MSP"].Value;
+                    if (Functions.ShowYesNoQuestion("Bạn có chắc chắn muốn Delete không ?") == DialogResult.Yes)
+                    {
+                        var Product = result.Where(p => p.product_id == id).FirstOrDefault();
+                        if (Product != null)
+                        {
+                            if (getParent().controller.DeleteProduct(Product))
+                            {
+                                Functions.ShowMessgeInfo("Delete success");
+                                Btn_Search_Click(null, null);
+                            }
+                            else
+                            {
+                                Functions.ShowMessgeError("Delete Failed");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Functions.ShowMessgeError("Chưa chọn dữ liệu để đổi");
+                }
+            }
+        }
+
+        private void ItemEditProduct_Click(object sender, EventArgs e)
+        {
+            if (dv.SelectedRows.Count == 1)
+            {
+                long id = (long)dv.SelectedRows[0].Cells["MSP"].Value;
+                var Product = result.Where(p => p.product_id == id).FirstOrDefault();
+                if (Product != null)
+                {
+                    using (EditProductView view = new EditProductView(getParent().controller, Product))
+                    {
+                        view.ShowDialog();
+                        if(view.IsChange)
+                        {
+                            Product = view.product;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (dv.SelectedCells.Count == 1)
+                {
+                    long id = (long)dv.Rows[dv.SelectedCells[0].RowIndex].Cells["MSP"].Value;
+                    var Product = result.Where(p => p.product_id == id).FirstOrDefault();
+                    if (Product != null)
+                    {
+                        using (EditProductView view = new EditProductView(getParent().controller, Product))
+                        {
+                            view.ShowDialog();
+                            if (view.IsChange)
+                            {
+                                Product = view.product;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Functions.ShowMessgeError("Chưa chọn dữ liệu để đổi");
+                }
+            }
+        }
+
+        private void ItemFeatureImage_Click(object sender, EventArgs e)
+        {
+            if (dv.SelectedRows.Count == 1)
+            {
+                long id = (long)dv.SelectedRows[0].Cells["MSP"].Value;
+
+                using (OpenFileDialog ofd = new OpenFileDialog())
+                {
+                    ofd.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                    ofd.Title = "Vui lòng chọn file";
+                    ofd.Multiselect = false;
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        var Product = result.Where(p => p.product_id == id).FirstOrDefault();
+                        if(Product != null)
+                        {
+                            if (getParent().controller.ChangeFeatureImage(Product, ofd.FileName))
+                            {
+                                Functions.ShowMessgeInfo("Change Feature Image success");
+                            }
+                            else
+                            {
+                                Functions.ShowMessgeError("Change Feature Image Failed");
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (dv.SelectedCells.Count == 1)
+                {
+                    long id = (long)dv.Rows[dv.SelectedCells[0].RowIndex].Cells["MSP"].Value;
+
+                    using (OpenFileDialog ofd = new OpenFileDialog())
+                    {
+                        ofd.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                        ofd.Title = "Vui lòng chọn file";
+                        ofd.Multiselect = false;
+                        if (ofd.ShowDialog() == DialogResult.OK)
+                        {
+                            var Product = result.Where(p => p.product_id == id).FirstOrDefault();
+                            if (Product != null)
+                            {
+                                if (getParent().controller.ChangeFeatureImage(Product, ofd.FileName))
+                                {
+                                    Functions.ShowMessgeInfo("Change Feature Image success");
+                                }
+                                else
+                                {
+                                    Functions.ShowMessgeError("Change Feature Image Failed");
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Functions.ShowMessgeError("Chưa chọn dữ liệu để đổi");
+                }
+            }
         }
 
         private void ItemChangeHashtag_Click(object sender, EventArgs e)
@@ -185,6 +360,15 @@ namespace ZeepingAdminDashboard.View
                     {
                         if (getParent().controller.ChangeHashTag(id, view.NewHashTag))
                         {
+                            result.Where(p => p.product_id == id).FirstOrDefault().hashtag = view.NewHashTag;
+                            for (int i = 0; i < dv.Rows.Count; i++)
+                            {
+                                if(dv.Rows[i].Cells[0].Value.Equals(id))
+                                {
+                                    dv.Rows[i].Cells[2].Value = view.NewHashTag;
+                                    break;
+                                }
+                            }
                             Functions.ShowMessgeInfo("Thay đổi HashTag thành công");
                         }
                         else
@@ -205,6 +389,15 @@ namespace ZeepingAdminDashboard.View
                         {
                             if (getParent().controller.ChangeHashTag(id, view.NewHashTag))
                             {
+                                result.Where(p => p.product_id == id).FirstOrDefault().hashtag = view.NewHashTag;
+                                for (int i = 0; i < dv.Rows.Count; i++)
+                                {
+                                    if (dv.Rows[i].Cells[0].Value.Equals(id))
+                                    {
+                                        dv.Rows[i].Cells[2].Value = view.NewHashTag;
+                                        break;
+                                    }
+                                }
                                 Functions.ShowMessgeInfo("Thay đổi HashTag thành công");
                             }
                             else
@@ -232,6 +425,12 @@ namespace ZeepingAdminDashboard.View
                     {
                         if (getParent().controller.ChangeCatogary(id, view.NewCatogarys))
                         {
+                            var Product = result.Where(p => p.product_id == id).FirstOrDefault();
+                            if(Product != null)
+                            {
+                                Product.Catogarys = view.NewCatogarys;
+                            }
+
                             Functions.ShowMessgeInfo("Thay đổi catogarys thành công");
                         }
                         else
@@ -252,6 +451,11 @@ namespace ZeepingAdminDashboard.View
                         {
                             if(getParent().controller.ChangeCatogary(id,view.NewCatogarys))
                             {
+                                var Product = result.Where(p => p.product_id == id).FirstOrDefault();
+                                if (Product != null)
+                                {
+                                    Product.Catogarys = view.NewCatogarys;
+                                }
                                 Functions.ShowMessgeInfo("Thay đổi catogarys thành công");
                             }
                             else
@@ -274,7 +478,7 @@ namespace ZeepingAdminDashboard.View
             int condition = (Index + 10 > result.Count) ? result.Count : Index + 10;
             for (int i = Index; i < condition; i++)
             {
-                dv.Rows.Add(result[i].product_id, result[i].product_name, result[i].product_iamge_design);
+                dv.Rows.Add(result[i].product_id, result[i].product_name, result[i].hashtag);
             }
         }
 
@@ -351,8 +555,6 @@ namespace ZeepingAdminDashboard.View
 
         private Button btn_BrownBehideImage;
         private Button btn_DeleteBehideImage;
-
-        private ComboBox cb_Color_Selected;
 
         private Button btn_Addproduct;
 
@@ -633,7 +835,7 @@ namespace ZeepingAdminDashboard.View
                 Product_Model pd = new Product_Model()
                 {
                     product_name = tb_TenSP.Text.Replace("\'", "\\\'"),
-                    product_iamge_design = product_image_design,
+                    product_image_design = product_image_design,
                     product_link = tb_LinkSP_direct.Text.Replace("\'", "\\\'"),
                     product_title = tb_title.Text.Replace("\'", "\\\'"),
                     product_content = rtb_content.Text.Replace("\'", "\\\'").Replace("\n", "<br/>"),
@@ -690,42 +892,8 @@ namespace ZeepingAdminDashboard.View
             clb_style.Items.AddRange(getParent().controller.getStyleList().ToArray());
 
             //Load Color
-            //clb_color.Items.Clear();
-            //clb_color.Items.AddRange(getParent().controller.getColorList().ToArray());
             lstColor = getParent().controller.getColorList();
 
-        }
-        private void Cb_Color_Selected_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(pn_Image != null)
-            {
-                pn_Image.setColor((Product_Color_Model)cb_Color_Selected.SelectedItem);
-            }
-        }
-
-        private void Clb_color_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            if (e.Index >= 0 && cb_Color_Selected != null)
-            {
-                Product_Color_Model color = (Product_Color_Model)clb_color.Items[e.Index];
-                if (e.NewValue == CheckState.Checked)
-                {
-                    cb_Color_Selected.Items.Add(color);
-                }
-                else if (e.NewValue == CheckState.Unchecked)
-                {
-                    foreach (Product_Color_Model item in cb_Color_Selected.Items)
-                    {
-                        if(item.Id == color.Id)
-                        {
-                            cb_Color_Selected.Items.Remove(item);
-                            break;
-                        }
-                    }
-                }
-                if (cb_Color_Selected.SelectedIndex == -1)
-                    cb_Color_Selected.SelectedIndex = 0;
-            }
         }
 
         private void Btn_DeleteFrontImage_Click(object sender, EventArgs e)

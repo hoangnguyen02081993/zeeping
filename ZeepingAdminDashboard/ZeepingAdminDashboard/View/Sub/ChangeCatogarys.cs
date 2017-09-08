@@ -48,10 +48,6 @@ namespace ZeepingAdminDashboard.View.Sub
                             {
                                 chlb_catogary.SetItemChecked(i, true);
                             }
-                            else
-                            {
-                                chlb_catogary.SetItemChecked(i, false);
-                            }
                         }
                     }
                 }

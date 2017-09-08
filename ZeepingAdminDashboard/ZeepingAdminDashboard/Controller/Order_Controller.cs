@@ -172,7 +172,7 @@ namespace ZeepingAdminDashboard.Controller
                             product_title = (string)dt.Rows[i]["product_title"],
                             product_link = (string)dt.Rows[i]["product_link"],
                             product_content = (string)dt.Rows[i]["product_content"],
-                            product_iamge_design = (string)dt.Rows[i]["product_image_design"],
+                            product_image_design = (string)dt.Rows[i]["product_image_design"],
                             color_list = (string)dt.Rows[i]["color_list"],
                             style_list = (string)dt.Rows[i]["style_list"],
                             style_design = (string)dt.Rows[i]["style_design"],

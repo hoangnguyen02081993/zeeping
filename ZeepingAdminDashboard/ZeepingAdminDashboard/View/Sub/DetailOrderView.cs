@@ -40,14 +40,14 @@ namespace ZeepingAdminDashboard.View
         {
             pn_color.BackColor = product_color.Colors;
             pn_style.BackgroundImage = Image.FromFile(Application.StartupPath + "/ImageModel/s" + order.style_id + ".png");
-            if(!product.product_iamge_design.Split(',')[0].Equals("None"))
+            if(!product.product_image_design.Split(',')[0].Equals("None"))
             {
                 byte[] data = null;
                 if (FTPAction.getFile(AppConfig.FTPHost,
                                       AppConfig.FTPUser,
                                       AppConfig.FTPPassword,
                                       FTPAction.localPathDesign,
-                                      product.product_iamge_design.Split(',')[0],
+                                      product.product_image_design.Split(',')[0],
                                       ref data))
                 {
                     Image i;
