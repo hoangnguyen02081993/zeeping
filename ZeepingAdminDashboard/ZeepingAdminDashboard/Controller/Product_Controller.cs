@@ -80,7 +80,7 @@ namespace ZeepingAdminDashboard.Controller
                                         "`order_product`",
                                           "(`product_name`, `product_image_design`, `product_title`, `product_content`, `product_link`, `style_list`, `color_list`, `style_design`, `isFeaturedProduct`, `linkFeaturedImage`, `linkProduct`, `Catogarys`,`rangcost`,`hashtag`)",
                                           "('" + product.product_name + "'," +
-                                          "'" + product.product_iamge_design + "'," +
+                                          "'" + product.product_image_design + "'," +
                                           "'" + product.product_title + "'," +
                                           "'" + product.product_content + "'," +
                                           "'" + product.product_link + "'," +
@@ -98,6 +98,40 @@ namespace ZeepingAdminDashboard.Controller
             {
                 LogFile.writeLog(LogFile.DIR, "Exception" + LogFile.getTimeStringNow() + ".txt", LogFile.Filemode.GHIDE, ex.Message);
             }
+            return result;
+        }
+        public bool DeleteProduct(Product_Model product)
+        {
+            bool result = false;
+
+            try
+            {
+                // delete Database
+                if (DBHandler.deleteDataBase(ref conn,
+                                            "`order_product`",
+                                            "`product_id` = " + product.product_id))
+                {
+                    result = true;
+
+                    //Delete Feature Image
+                    FTPAction.deleteFile(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword,
+                                         FTPAction.localPathFeaturedImage, product.linkFeaturedImage);
+                    //Delete Design Image
+                    foreach (var item in product.product_image_design.Split(','))
+                    {
+                        if(!item.Equals("None"))
+                        {
+                            FTPAction.deleteFile(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword,
+                                                 FTPAction.localPathDesign, product.linkFeaturedImage);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogFile.writeLog(LogFile.DIR, "Exception" + LogFile.getTimeStringNow() + ".txt", LogFile.Filemode.GHIDE, ex.Message);
+            }
+
             return result;
         }
         public bool Searchproduct(ref List<Product_Model> lstResult,string MSP,string TSP)
@@ -143,7 +177,7 @@ namespace ZeepingAdminDashboard.Controller
                             product_title = (string)dt.Rows[i]["product_title"],
                             product_link = (string)dt.Rows[i]["product_link"],
                             product_content = (string)dt.Rows[i]["product_content"],
-                            product_iamge_design = (string)dt.Rows[i]["product_image_design"],
+                            product_image_design = (string)dt.Rows[i]["product_image_design"],
                             color_list = (string)dt.Rows[i]["color_list"],
                             style_list = (string)dt.Rows[i]["style_list"],
                             style_design = (string)dt.Rows[i]["style_design"],
@@ -262,6 +296,46 @@ namespace ZeepingAdminDashboard.Controller
                     "`order_product`",
                     "`hashtag` = '" + NewHashTag + "'",
                     "`product_id` = " + MSP))
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogFile.writeLog(LogFile.DIR, "Exception" + LogFile.getTimeStringNow() + ".txt", LogFile.Filemode.GHIDE, ex.Message);
+            }
+            return result;
+        }
+        public bool ChangeFeatureImage(Product_Model product,string NewImage)
+        {
+            bool result = false;
+
+            result = FTPAction.sendFile(AppConfig.FTPHost, AppConfig.FTPUser, AppConfig.FTPPassword,
+                                        FTPAction.localPathFeaturedImage, product.linkProduct + Functions.GetExtension(NewImage),
+                                        Functions.GetPathFileName(NewImage), Functions.GetSafeFileName(NewImage))
+                      && DBHandler.updateDataBase(ref conn,
+                        "`order_product`",
+                        "`linkFeaturedImage` = '" + product.linkProduct + Functions.GetExtension(NewImage) + "'",
+                        "`product_id` = " + product.product_id);
+            return result;
+        }
+        public bool EditProduct(Product_Model product)
+        {
+            bool result = false;
+            try
+            {
+
+                if (DBHandler.updateDataBase(ref conn,
+                    "`order_product`",
+                    "`product_image_design` = '" + product.product_image_design + "'," +
+                    "`product_link` = '" + product.product_link + "'," +
+                    "`product_title` = '" + product.product_title + "'," +
+                    "`product_content` = '" + product.product_content + "'," +
+                    "`color_list` = '" + product.color_list + "'," +
+                    "`style_list` = '" + product.style_list + "'," +
+                    "`style_design` = '" + product.style_design + "'," +
+                    "`rangcost` = '" + product.rangcost + "'",
+                    "`product_id` = " + product.product_id))
                 {
                     result = true;
                 }

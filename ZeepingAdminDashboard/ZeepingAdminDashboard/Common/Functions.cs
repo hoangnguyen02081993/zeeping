@@ -72,6 +72,10 @@ namespace ZeepingAdminDashboard.Common
         {
             MessageBox.Show(Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        public static DialogResult ShowYesNoQuestion(string Question)
+        {
+            return MessageBox.Show(Question, "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
         public static void ShowMaiQuynhAnh()
         {
             if (Directory.Exists(Application.StartupPath + "/MaiQuynhAnh"))
@@ -224,6 +228,18 @@ namespace ZeepingAdminDashboard.Common
             bool result = false;
             if (str == null || str == string.Empty) return true;
             result = Regex.IsMatch(str, @"^[a-z0-9]{1}[a-z0-9,]{1,}[a-z0-9]{1}$");
+            return result;
+        }
+
+        public static List<int> GetList(string arraystring, char SplitChar)
+        {
+            List<int> result = new List<int>();
+
+            foreach (string item in arraystring.Split(SplitChar))
+            {
+                result.Add(int.Parse(item));
+            }
+
             return result;
         }
     }

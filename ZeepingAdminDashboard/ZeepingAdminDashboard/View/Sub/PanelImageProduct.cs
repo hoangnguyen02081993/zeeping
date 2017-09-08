@@ -81,6 +81,16 @@ namespace ZeepingAdminDashboard.View.Sub
                 }
             }
         }
+        public void setFrontDesign(Bitmap bm)
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (item is ImageStyle)
+                {
+                    ((ImageStyle)item).AddFrontDesign(bm);
+                }
+            }
+        }
         public void deleteFrontDesign()
         {
             foreach (Control item in this.Controls)
@@ -98,6 +108,16 @@ namespace ZeepingAdminDashboard.View.Sub
                 if (item is ImageStyle)
                 {
                     ((ImageStyle)item).AddBehideDesign(FileName);
+                }
+            }
+        }
+        public void setBehideDesign(Bitmap bm)
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (item is ImageStyle)
+                {
+                    ((ImageStyle)item).AddBehideDesign(bm);
                 }
             }
         }
@@ -125,6 +145,20 @@ namespace ZeepingAdminDashboard.View.Sub
                 }
             }
         }
+        public void setFrontDesign(Bitmap bm, long StyleId)
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (item is ImageStyle)
+                {
+                    if (((ImageStyle)item).Style.Id == StyleId)
+                    {
+                        ((ImageStyle)item).AddFrontDesign(bm);
+                        break;
+                    }
+                }
+            }
+        }
         public void setBehideDesign(string FileName, long StyleId)
         {
             foreach (Control item in this.Controls)
@@ -139,11 +173,60 @@ namespace ZeepingAdminDashboard.View.Sub
                 }
             }
         }
-        public void setColor(Product_Color_Model color)
+        public void setBehideDesign(Bitmap bm, long StyleId)
         {
-            if (color != null)
+            foreach (Control item in this.Controls)
             {
-                this.BackColor = color.Colors;
+                if (item is ImageStyle)
+                {
+                    if (((ImageStyle)item).Style.Id == StyleId)
+                    {
+                        ((ImageStyle)item).AddBehideDesign(bm);
+                        break;
+                    }
+                }
+            }
+        }
+        public void setChoosenColorListbyId(List<int> colorIdList, int styleId)
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (item is ImageStyle)
+                {
+                    if (((ImageStyle)item).Style.Id == styleId)
+                    {
+                        ((ImageStyle)item).setChoosenColorList(colorIdList);
+                        break;
+                    }
+                }
+            }
+        }
+        public void setLocationandSizeFrontDesignbyId(Point location,Size size,int styleId)
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (item is ImageStyle)
+                {
+                    if (((ImageStyle)item).Style.Id == styleId)
+                    {
+                        ((ImageStyle)item).setLocationandSizeFrontDesign(location,size);
+                        break;
+                    }
+                }
+            }
+        }
+        public void setLocationandSizeBehindDesignbyId(Point location, Size size, int styleId)
+        {
+            foreach (Control item in this.Controls)
+            {
+                if (item is ImageStyle)
+                {
+                    if (((ImageStyle)item).Style.Id == styleId)
+                    {
+                        ((ImageStyle)item).setLocationandSizeBehindDesign(location, size);
+                        break;
+                    }
+                }
             }
         }
         public string getStyleDesign()
@@ -380,6 +463,36 @@ namespace ZeepingAdminDashboard.View.Sub
         {
             clb_color.Items.AddRange(lstColor.ToArray());
         }
+        public void setChoosenColorList(List<int> colorIdList)
+        {
+            foreach (int item in colorIdList)
+            {
+                for (int i = 0; i < clb_color.Items.Count; i++)
+                {
+                    if(((Product_Color_Model)clb_color.Items[i]).Id == item)
+                    {
+                        clb_color.SetItemChecked(i, true);
+                        break;
+                    }
+                }
+            }
+        }
+        public void setLocationandSizeFrontDesign(Point location,Size size)
+        {
+            if(AddFrontpic != null)
+            {
+                AddFrontpic.Location = location;
+                AddFrontpic.Size = size;
+            }
+        }
+        public void setLocationandSizeBehindDesign(Point location, Size size)
+        {
+            if (AddBehidepic != null)
+            {
+                AddBehidepic.Location = location;
+                AddBehidepic.Size = size;
+            }
+        }
         public void AddFrontDesign(string FileName)
         {
             if (File.Exists(FileName))
@@ -409,6 +522,35 @@ namespace ZeepingAdminDashboard.View.Sub
                 //TODO
             }
         }
+        public void AddFrontDesign(Bitmap bm)
+        {
+            if (bm != null)
+            {
+                if (AddFrontpic == null)
+                {
+                    AddFrontpic = new DesignView(bm);
+                    AddFrontpic.Location = new Point(0, 0);
+                    AddFrontpic.Size = new Size(50, 50);
+                    AddFrontpic.BackgroundImageLayout = ImageLayout.Stretch;
+                    AddFrontpic.setmainHeight(this.Height);
+                    AddFrontpic.setmainWidth(this.Width);
+                    Stylepic.Controls.Add(AddFrontpic);
+                    AddFrontpic.BackgroundImage = bm;
+                    if (IsBehide)
+                    {
+                        AddFrontpic.Visible = false;
+                    }
+                }
+                else
+                {
+                    AddFrontpic.BackgroundImage = bm;
+                }
+            }
+            else
+            {
+                //TODO
+            }
+        }
         public void AddBehideDesign(string FileName)
         {
             if (File.Exists(FileName) && Style.ishavebehide)
@@ -431,6 +573,35 @@ namespace ZeepingAdminDashboard.View.Sub
                 else
                 {
                     AddBehidepic.BackgroundImage = Image.FromFile(FileName);
+                }
+            }
+            else
+            {
+                //TODO
+            }
+        }
+        public void AddBehideDesign(Bitmap bm)
+        {
+            if (bm != null && Style.ishavebehide)
+            {
+                if (AddBehidepic == null)
+                {
+                    AddBehidepic = new DesignView(bm);
+                    AddBehidepic.Location = new Point(0, 0);
+                    AddBehidepic.Size = new Size(50, 50);
+                    AddBehidepic.BackgroundImageLayout = ImageLayout.Stretch;
+                    AddBehidepic.setmainHeight(this.Height);
+                    AddBehidepic.setmainWidth(this.Width);
+                    Stylepic.Controls.Add(AddBehidepic);
+                    AddBehidepic.BackgroundImage = bm;
+                    if (!IsBehide)
+                    {
+                        AddBehidepic.Visible = false;
+                    }
+                }
+                else
+                {
+                    AddBehidepic.BackgroundImage = bm;
                 }
             }
             else

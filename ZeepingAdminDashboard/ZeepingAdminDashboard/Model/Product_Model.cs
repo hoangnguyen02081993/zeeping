@@ -10,7 +10,7 @@ namespace ZeepingAdminDashboard.Model
     {
         public long product_id { set; get; }
         public string product_name { set; get; }
-        public string product_iamge_design { set; get; }
+        public string product_image_design { set; get; }
         public string product_title { set; get; }
         public string product_content { set; get; }
         public string product_link { set; get; }

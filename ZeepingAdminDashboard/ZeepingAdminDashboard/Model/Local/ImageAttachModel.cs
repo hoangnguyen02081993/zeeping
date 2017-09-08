@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,5 +12,6 @@ namespace ZeepingAdminDashboard.Model.Local
         public Guid id = Guid.NewGuid();
         public bool IsLocal { set; get; }
         public string Link { set; get; }
+        public Bitmap bm { set; get; }
     }
 }
