@@ -173,14 +173,16 @@ namespace ZeepingAdminDashboard.View
             dv.Size = new Size(700, 250);
             dv.Columns.Add("ID", "ID");
             dv.Columns.Add("TM", "Tracking mail");
+            dv.Columns.Add("Pro", "Mã sản phẩm");
             dv.Columns.Add("Style", "Style");
             dv.Columns.Add("Color", "Color");
             dv.Columns.Add("Date", "Ngày");
             dv.Columns["ID"].Width = 30;
             dv.Columns["TM"].Width = 170;
-            dv.Columns["Style"].Width = 160;
-            dv.Columns["Color"].Width = 150;
-            dv.Columns["Date"].Width = 140;
+            dv.Columns["Pro"].Width = 100;
+            dv.Columns["Style"].Width = 130;
+            dv.Columns["Color"].Width = 100;
+            dv.Columns["Date"].Width = 120;
             dv.Rows.Add(10);
             dv.AllowUserToAddRows = false;
             dv.MultiSelect = false;
@@ -388,7 +390,7 @@ namespace ZeepingAdminDashboard.View
             int condition = (Index + 10 > result.Count) ? result.Count : Index + 10;
             for (int i = Index; i < condition; i++)
             {
-                dv.Rows.Add(result[i].id, result[i].email, lstStyle.Where(s => s.Id == result[i].style_id).FirstOrDefault().Name, lstColor.Where(s => s.Id == result[i].color_id).FirstOrDefault().Name, result[i].date.ToString("yyyy-MM-dd HH:mm:ss"));
+                dv.Rows.Add(result[i].id, result[i].email, result[i].product_id , lstStyle.Where(s => s.Id == result[i].style_id).FirstOrDefault().Name, lstColor.Where(s => s.Id == result[i].color_id).FirstOrDefault().Name, result[i].date.ToString("yyyy-MM-dd HH:mm:ss"));
                 Color c = lstColor.Where(s => s.Id == result[i].color_id).FirstOrDefault().Colors;
                 dv.Rows[dv.Rows.Count - 1].Cells[3].Style.BackColor = c;
                 if((c.R + c.G + c.B) /3 <128)
@@ -558,7 +560,7 @@ namespace ZeepingAdminDashboard.View
         private void Init()
         {
             btn_ShowCloseProduct = new Button();
-            btn_ShowCloseProduct.Text = Cons.User_btnHideThem;
+            btn_ShowCloseProduct.Text = Cons.User_btnHideXem;
             btn_ShowCloseProduct.Location = new Point(20, 5);
             btn_ShowCloseProduct.Size = new Size(300, 30);
             btn_ShowCloseProduct.Click += Btn_ShowCloseProduct_Click;
@@ -645,15 +647,15 @@ namespace ZeepingAdminDashboard.View
         }
         private void Btn_ShowCloseProduct_Click(object sender, EventArgs e)
         {
-            if (btn_ShowCloseProduct.Text == Resources.Cons.User_btnShowThem) // Thuc hien chuc nang hide
+            if (btn_ShowCloseProduct.Text == Resources.Cons.User_btnShowXem) // Thuc hien chuc nang hide
             {
                 this.Size = new Size(this.Size.Width, Resources.Cons.MinHeight);
-                btn_ShowCloseProduct.Text = Resources.Cons.User_btnHideThem;
+                btn_ShowCloseProduct.Text = Resources.Cons.User_btnHideXem;
             }
             else // thuc hien chuc nang show
             {
                 this.Size = new Size(this.Size.Width, MaxHeight);
-                btn_ShowCloseProduct.Text = Resources.Cons.User_btnShowThem;
+                btn_ShowCloseProduct.Text = Resources.Cons.User_btnShowXem;
             }
             ((UserView)this.Parent).EventSizeChanged();
         }
