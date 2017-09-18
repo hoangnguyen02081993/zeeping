@@ -162,7 +162,7 @@ namespace ZeepingAdminDashboard.Controller
             result += "Click here to active your zeeping acccount:<br/>";
             result += "<a href=\"http://zeeping.com/customer/register.php?u=" + Functions.GetMD5(UserName) + "\" >http://zeeping.com/customer/register.php?u=" + Functions.GetMD5(UserName) + "</a><br/><br/>"; // link kich hoat
             result += "Please read particular zeeping guide for more useful. This link is below: <br/>";
-            result += "<a href=\"http://zeeping.com/zeeping-guide/\">http://zeeping.com/zeeping-guide/</a><br/>"; // link huong dan
+            result += "<a href=\"http://zeeping.com/about-us\">http://zeeping.com/about-us</a><br/>"; // link huong dan
             result += "If you wanna design any product, don’t worry and please contact us to help you in anytime.<br/>";
             result += "Your happiness is my fun!<br/>";
             result += "The Zeeping Team!<br/><br/>";
@@ -252,7 +252,7 @@ namespace ZeepingAdminDashboard.Controller
                 DataTable dt;
                 if ((dt = DBHandler.selectDataBase(ref conn,
                                         "`order_mail_tracking`",
-                                          "`id`, `email`, `style_id`, `color_id`, `date`",
+                                          "`id`, `email`, `product_id` , `style_id`, `color_id`, `date`",
                                           condition)) != null)
                 {
                     lstResult = new List<TrackingMail_Model>();
@@ -262,6 +262,7 @@ namespace ZeepingAdminDashboard.Controller
                         {
                             id = (long)dt.Rows[i]["id"],
                             email = (string)dt.Rows[i]["email"],
+                            product_id = (long)dt.Rows[i]["product_id"],
                             style_id = (long)dt.Rows[i]["style_id"],
                             color_id = (long)dt.Rows[i]["color_id"],
                             date = (DateTime)dt.Rows[i]["date"],

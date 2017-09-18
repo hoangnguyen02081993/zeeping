@@ -20,8 +20,8 @@ namespace ZeepingAdminDashboard.Resources
         public const string User_btnShowTrackingMail = "Ẩn Tracking Mail";
         public const string User_btnHideThem = "Xem Add User";
         public const string User_btnShowThem = "Ẩn Add User";
-        public const string User_btnHideXem = "Xem User";
-        public const string User_btnShowXem = "Ẩn User";
+        public const string User_btnHideXem = "Xem List User";
+        public const string User_btnShowXem = "Ẩn List User";
 
         public const int ImageGenarateWidth = 530;
         public const int ImageGenarateHeight = 630;
