@@ -36,6 +36,8 @@
             this.chlb_catogary = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_hashtag = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cb_vision = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pc_featuredimage)).BeginInit();
             this.SuspendLayout();
@@ -96,7 +98,7 @@
             this.chlb_catogary.FormattingEnabled = true;
             this.chlb_catogary.Location = new System.Drawing.Point(375, 51);
             this.chlb_catogary.Name = "chlb_catogary";
-            this.chlb_catogary.Size = new System.Drawing.Size(120, 274);
+            this.chlb_catogary.Size = new System.Drawing.Size(120, 214);
             this.chlb_catogary.TabIndex = 3;
             // 
             // label1
@@ -115,11 +117,35 @@
             this.tb_hashtag.Size = new System.Drawing.Size(338, 20);
             this.tb_hashtag.TabIndex = 5;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(372, 274);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Default vision:";
+            // 
+            // cb_vision
+            // 
+            this.cb_vision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_vision.FormattingEnabled = true;
+            this.cb_vision.Items.AddRange(new object[] {
+            "Front",
+            "Behide"});
+            this.cb_vision.Location = new System.Drawing.Point(375, 295);
+            this.cb_vision.Name = "cb_vision";
+            this.cb_vision.Size = new System.Drawing.Size(121, 21);
+            this.cb_vision.TabIndex = 7;
+            this.cb_vision.SelectedIndexChanged += new System.EventHandler(this.cb_vision_SelectedIndexChanged);
+            // 
             // AdditionalProductView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 390);
+            this.Controls.Add(this.cb_vision);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.tb_hashtag);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chlb_catogary);
@@ -148,5 +174,7 @@
         private System.Windows.Forms.CheckedListBox chlb_catogary;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_hashtag;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cb_vision;
     }
 }

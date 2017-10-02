@@ -75,6 +75,17 @@ namespace ZeepingAdminDashboard
                 Process.Start(Application.StartupPath + "/ReleaseDownloader.exe");
                 Application.Exit();
             }
+
+            try
+            {
+                string ReleaseNote = File.ReadAllText(Resources.Cons.ReleaseNoteLink);
+                using (ReleaseNote view = new ZeepingAdminDashboard.ReleaseNote(ReleaseNote))
+                {
+                    view.ShowDialog();
+                }
+                File.Delete(Resources.Cons.ReleaseNoteLink);
+            }
+            catch { }
         }
 
         public void Init()

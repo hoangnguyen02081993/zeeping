@@ -78,7 +78,7 @@ namespace ZeepingAdminDashboard.Controller
             {
                 if (DBHandler.insertDataBase(ref conn,
                                         "`order_product`",
-                                          "(`product_name`, `product_image_design`, `product_title`, `product_content`, `product_link`, `style_list`, `color_list`, `style_design`, `isFeaturedProduct`, `linkFeaturedImage`, `linkProduct`, `Catogarys`,`rangcost`,`hashtag`)",
+                                          "(`product_name`, `product_image_design`, `product_title`, `product_content`, `product_link`, `style_list`, `color_list`, `style_design`, `isFeaturedProduct`, `linkFeaturedImage`, `linkProduct`, `Catogarys`,`rangcost`,`hashtag`,`isFrontVision`)",
                                           "('" + product.product_name + "'," +
                                           "'" + product.product_image_design + "'," +
                                           "'" + product.product_title + "'," +
@@ -92,7 +92,8 @@ namespace ZeepingAdminDashboard.Controller
                                           "'" + product.linkProduct + "'," +
                                           "'" + product.Catogarys + "'," +
                                           "'" + product.rangcost + "'," +
-                                          "'" + product.hashtag + "')")) result = true;
+                                          "'" + product.hashtag + "'," +
+                                          "'" + (product.isFrontVision == true ? "1" : "0") + "')")) result = true;
             }
             catch (Exception ex)
             {
@@ -187,7 +188,8 @@ namespace ZeepingAdminDashboard.Controller
                             linkProduct = (string)dt.Rows[i]["linkProduct"],
                             Catogarys = (string)dt.Rows[i]["Catogarys"],
                             rangcost = (string)dt.Rows[i]["rangcost"],
-                            hashtag = (string)dt.Rows[i]["hashtag"]
+                            hashtag = (string)dt.Rows[i]["hashtag"],
+                            isFrontVision = (bool)dt.Rows[i]["isFrontVision"]
                         };
                         lstResult.Add(item);
                     }
@@ -295,6 +297,26 @@ namespace ZeepingAdminDashboard.Controller
                 if (DBHandler.updateDataBase(ref conn,
                     "`order_product`",
                     "`hashtag` = '" + NewHashTag + "'",
+                    "`product_id` = " + MSP))
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogFile.writeLog(LogFile.DIR, "Exception" + LogFile.getTimeStringNow() + ".txt", LogFile.Filemode.GHIDE, ex.Message);
+            }
+            return result;
+        }
+        public bool ChangeDefaultVision(long MSP, bool DefaultVision)
+        {
+            bool result = false;
+            try
+            {
+
+                if (DBHandler.updateDataBase(ref conn,
+                    "`order_product`",
+                    "`isFrontVision` = '" + (DefaultVision == true ? "1" : "0") + "'",
                     "`product_id` = " + MSP))
                 {
                     result = true;

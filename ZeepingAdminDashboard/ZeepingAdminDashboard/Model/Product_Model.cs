@@ -24,5 +24,6 @@ namespace ZeepingAdminDashboard.Model
         public string Catogarys { set; get; }
         public string rangcost {set; get; }
         public string hashtag { set; get; }
+        public bool isFrontVision { set; get; }
     }
 }
