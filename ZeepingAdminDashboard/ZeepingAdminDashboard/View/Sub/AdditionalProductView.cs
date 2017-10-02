@@ -21,6 +21,7 @@ namespace ZeepingAdminDashboard.View.Sub
         private Product_Controller _controller = null;
         public string AllCatogary = string.Empty;
         public string HashTagString = string.Empty;
+        public bool IsFront = true;
         public AdditionalProductView(Product_Controller controller)
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace ZeepingAdminDashboard.View.Sub
             }
             chlb_catogary.Items.AddRange(lst.ToArray());
             chlb_catogary.DisplayMember = "name";
+            cb_vision.SelectedIndex = 0;
         }
 
         private void btn_browser_Click(object sender, EventArgs e)
@@ -91,6 +93,18 @@ namespace ZeepingAdminDashboard.View.Sub
             AllCatogary = AllCatogary.Substring(0, AllCatogary.Length - 1);
             HashTagString = hashtagstring;
             DialogResult = DialogResult.OK;
+        }
+
+        private void cb_vision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cb_vision.SelectedIndex == 0)
+            {
+                IsFront = true;
+            }
+            else
+            {
+                IsFront = false;
+            }
         }
     }
 }

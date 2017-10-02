@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ZeepingAdminDashboard.Resources
 {
@@ -25,5 +26,7 @@ namespace ZeepingAdminDashboard.Resources
 
         public const int ImageGenarateWidth = 530;
         public const int ImageGenarateHeight = 630;
+
+        public static string ReleaseNoteLink = Application.StartupPath + "/Release.note";
     }
 }

@@ -187,9 +187,64 @@ namespace ZeepingAdminDashboard.View
             itemFeatureImage.Size = new System.Drawing.Size(104, 22);
             ctm.Items.Add(itemFeatureImage);
 
+            ToolStripMenuItem itemVision = new ToolStripMenuItem();
+            itemVision.Text = "Change Default Vision (Front or Behide)";
+            itemVision.Click += ItemVision_Click;
+            itemVision.Size = new System.Drawing.Size(104, 22);
+            ctm.Items.Add(itemVision);
+
             dv.ContextMenuStrip = ctm;
 
             #endregion
+        }
+
+        private void ItemVision_Click(object sender, EventArgs e)
+        {
+            if (dv.SelectedRows.Count == 1)
+            {
+                long id = (long)dv.SelectedRows[0].Cells["MSP"].Value;
+                using (ChangeDefaultVisionProductView view = new ChangeDefaultVisionProductView(getParent().controller, id))
+                {
+                    if (view.ShowDialog() == DialogResult.OK)
+                    {
+                        if (getParent().controller.ChangeDefaultVision(id, view.IsFront))
+                        {
+                            result.Where(p => p.product_id == id).FirstOrDefault().isFrontVision = view.IsFront;
+                            Functions.ShowMessgeInfo("Thay đổi bề mặt mặc định thành công");
+                        }
+                        else
+                        {
+                            Functions.ShowMessgeError("Thay đổi bề mặt mặc định thất bại");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (dv.SelectedCells.Count == 1)
+                {
+                    long id = (long)dv.Rows[dv.SelectedCells[0].RowIndex].Cells["MSP"].Value;
+                    using (ChangeDefaultVisionProductView view = new ChangeDefaultVisionProductView(getParent().controller, id))
+                    {
+                        if (view.ShowDialog() == DialogResult.OK)
+                        {
+                            if (getParent().controller.ChangeDefaultVision(id, view.IsFront))
+                            {
+                                result.Where(p => p.product_id == id).FirstOrDefault().isFrontVision = view.IsFront;
+                                Functions.ShowMessgeInfo("Thay đổi bề mặt mặc định thành công");
+                            }
+                            else
+                            {
+                                Functions.ShowMessgeError("Thay đổi bề mặt mặc định thất bại");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Functions.ShowMessgeError("Chưa chọn dữ liệu để đổi");
+                }
+            }
         }
 
         private void ItemDeleteProduct_Click(object sender, EventArgs e)
@@ -754,6 +809,7 @@ namespace ZeepingAdminDashboard.View
                 string ExtensionFeaturedImage = string.Empty;
                 string Catogarys = string.Empty;
                 string HashTagString = string.Empty;
+                bool IsFront;
                 using (AdditionalProductView view = new AdditionalProductView(getParent().controller))
                 {
                     if(view.ShowDialog() == DialogResult.OK)
@@ -763,6 +819,7 @@ namespace ZeepingAdminDashboard.View
                         ExtensionFeaturedImage = view.ExtensionImage;
                         Catogarys = view.AllCatogary;
                         HashTagString = view.HashTagString;
+                        IsFront = view.IsFront;
                     }
                     else
                     {
@@ -847,7 +904,8 @@ namespace ZeepingAdminDashboard.View
                     isFeaturedProduct = IsFeaturedProduct,
                     Catogarys = Catogarys,
                     rangcost = "$" + getMinCostStyle() + " - $" + getMaxCostStyle(),
-                    hashtag = HashTagString
+                    hashtag = HashTagString,
+                    isFrontVision = IsFront
                 };
                 if(!getParent().controller.Addproduct(pd))
                 {

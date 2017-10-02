@@ -1,0 +1,5 @@
+Release v5.1.
+
+Release này thêm chức năng chỉ định bề mặt hiển thị mặt định của áo khi load.
++ Chọn lúc add áo.
++ Thay đổi lúc xem áo (chuột phải vô product -> chọn change Default Vision -> Chọn bề mặt -> Ok).
