@@ -10,7 +10,7 @@
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
-
+        <link rel="shortcut icon" href="<?php echo $WebUrl;  ?>/image/common/logo.ico" type="image/x-icon" />
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
@@ -102,18 +102,14 @@
 
 												    <div class="widget-toolbar no-border invoice-info">
 													<span class="invoice-info-label">Invoice:</span>
-													<span class="red">#69696969</span>
+													<span class="red"><?php echo "ZO" . sprintf("%'.07d\n", $Order["order_id"]); ?></span>
 
 													<br>
 													<span class="invoice-info-label">Date:</span>
-													<span class="blue">20/04/2017</span>
+													<span class="blue"><?php echo date("d/m/Y", strtotime($Order["createDate"])); ?></span>
 												    </div>
 
-												    <div class="widget-toolbar hidden-480">
-													<a href="#">
-														<i class="ace-icon fa fa-print"></i>
-													</a>
-												</div>
+												    
 												
 											</div>
 												<div class="step-content pos-rel">
@@ -122,13 +118,13 @@
 
 														
 
-														<form class="form-horizontal" id="frmConfirmationNext" method="post" novalidate="novalidate" action="./action/confirmaction.php">
-															<div class="form-group">
+														<form class="form-horizontal col-sm-offset-2"  id="frmConfirmationNext" method="post" novalidate="novalidate" action="./action/confirmaction.php">
+															<div class="form-group ">
 																<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Email Address:</label>
 
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="email" name="email" id="email" class="col-xs-12 col-sm-4" placeholder="E-Mail" value="<?php echo $Order["email"]; ?>" required />
+																		<input type="email" name="email" id="email" class="col-xs-12 col-sm-6" placeholder="E-Mail" value="<?php echo $Order["email"]; ?>" required />
 																	</div>
 																</div>
 															</div>
@@ -140,7 +136,7 @@
 
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="text" name="firstname" id="firstname" class="col-xs-12 col-sm-4" placeholder="First Name" value="<?php echo $Order["firstname"]; ?>" required/>
+																		<input type="text" name="firstname" id="firstname" class="col-xs-12 col-sm-6" placeholder="First Name" value="<?php echo $Order["firstname"]; ?>" required/>
 																	</div>
 																</div>
 															</div>
@@ -152,7 +148,7 @@
 
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="text" name="lastname" id="lastname" class="col-xs-12 col-sm-4" placeholder="Last Name" value="<?php echo $Order["lastname"]; ?>" required />
+																		<input type="text" name="lastname" id="lastname" class="col-xs-12 col-sm-6" placeholder="Last Name" value="<?php echo $Order["lastname"]; ?>" required />
 																	</div>
 																</div>
 															</div>
@@ -162,17 +158,17 @@
 
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="text" name="street_address" id="street_address" class="col-xs-12 col-sm-4" placeholder="Street Address" value="<?php echo $Order["street_address"]; ?>" required />
+																		<input type="text" name="street_address" id="street_address" class="col-xs-12 col-sm-6" placeholder="Street Address" value="<?php echo $Order["street_address"]; ?>" required />
 																	</div>
 																</div>
 															</div>
 															
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="apt">Apt/Suite/Other:</label>
+																<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="apt">Apt/Suite/Other:</label> 
 
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="text" name="apt_suite_other" id="apt_suite_other" class="col-xs-12 col-sm-4" placeholder="Apt/Suite/Other" value="<?php echo $Order["apt_suite_other"]; ?>" required/>
+																		<input type="text" name="apt_suite_other" id="apt_suite_other" class="col-xs-12 col-sm-6" placeholder="Apt/Suite/Other" value="<?php echo $Order["apt_suite_other"]; ?>">
 																	</div>
 																</div>
 															</div>
@@ -182,17 +178,17 @@
 
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="text" name="city" id="city" class="col-xs-12 col-sm-4" placeholder="City" value="<?php echo $Order["city"]; ?>" required />
+																		<input type="text" name="city" id="city" class="col-xs-12 col-sm-6" placeholder="City" value="<?php echo $Order["city"]; ?>" required />
 																	</div>
 																</div>
 															</div>
 															
 															<div class="form-group">
-																<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="province">Province:</label>
+																<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="province">Province/State:</label>
 
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="text" name="province" id="province" class="col-xs-12 col-sm-4" placeholder="Province" value="<?php echo $Order["province"]; ?>" required />
+																		<input type="text" name="province" id="province" class="col-xs-12 col-sm-6" placeholder="Province/State" value="<?php echo $Order["province"]; ?>" required />
 																	</div>
 																</div>
 															</div>
@@ -202,7 +198,7 @@
 
 																<div class="col-xs-12 col-sm-9">
 																	<div class="clearfix">
-																		<input type="text" name="postal_code" id="postal_code" class="col-xs-12 col-sm-4" placeholder="Postal Code" value="<?php echo $Order["postal_code"]; ?>" required />
+																		<input type="text" name="postal_code" id="postal_code" class="col-xs-12 col-sm-6" placeholder="Postal Code" value="<?php echo $Order["postal_code"]; ?>" required />
 																	</div>
 																</div>
 															</div>
@@ -283,8 +279,15 @@
 													
 												<i class="ace-icon fa fa-arrow-right icon-on-right"></i></button>
 											</div>
+											<div class="space-6"></div>
+													<div class="well">
+														Thank you for choosing Zeeping Shirt products.
+				We believe you will be satisfied by our product.
+													</div>
 											</div>
+											
 											</div>
+											
 										
 										<!-- basic scripts -->
     </div>
@@ -355,9 +358,7 @@
 						street_address: {
 							required: true
 						},
-						apt_suite_other: {
-							required: true
-						},
+						
 						city: {
 							required: true
 						},
@@ -419,5 +420,6 @@
 				
 			})
 		</script>
+
 </body>
 </html>

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Zeeping - Form</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-
+    <link rel="shortcut icon" href="<?php echo $WebUrl;  ?>/image/common/logo.ico" type="image/x-icon" />
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script>
 		var hoang = false;
@@ -69,11 +69,11 @@
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body> 
+	<body style=" background-color:#EEEEEE;" > 
 
-		<div class="page-content" style=" background-color:#EEEEEE;" >
+		<div class="page-content" style=" background-color:#EEEEEE; margin: 3% 0 0 0;" >
 			<div class="row" >
-				<div class="col-sm-10 col-sm-offset-1" style="background-color:white">
+				<div class="col-sm-8 col-sm-offset-2" style="background-color:white">
 					<br>
 					<br>
 					<div class="widget-header widget-header-large">
@@ -81,7 +81,7 @@
 							<font color="green" align="center" size="6px"><strong> Submit Ticket </strong></font>
 						</h3>
 						<div class="widget-toolbar no-border invoice-info">
-							<img src="http://zeeping.com/image/common/logo.png" style="width:110px;height:70px;">
+							<img src="http://zeeping.com/image/common/logo.png" style="height:49.2px;width:90.5px">
 						</div>					
 					</div>
 					<br>
@@ -139,17 +139,7 @@
 					</div>
 				</div>
 			</div>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
 		</div>
 
+    </div>
 </body>

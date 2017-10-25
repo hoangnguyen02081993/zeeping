@@ -7,7 +7,7 @@
 
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+        <link rel="shortcut icon" href="<?php echo $WebUrl;  ?>/image/common/logo.ico" type="image/x-icon" />
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -84,11 +84,8 @@
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="index.php" class="navbar-brand">
-						<small>
-							<i class="fa fa-leaf"></i>
-							Zeeping
-						</small>
+					<a href="http://zeeping.com" class="navbar-brand">
+						<img src="http://zeeping.com/image/common/logo.png" style="height:45;width:82.77px;margin-right:35%"></img>
 					</a>
 				</div>
 
@@ -410,6 +407,24 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
                             $Orders = getObjsbyCondition($Orders,"ischeckoutcompleted",1);
                             $Sizes = getSizes("");
                             $Statuss = getStatus();
+                            $products;
+                            if(count($Orders) > 0)
+                            {
+                                $condition = "`product_id` IN (";
+                                
+                                foreach($Orders as $order)
+                                {
+                                    $condition .= $order["product_id"] . ","; 
+                                }
+                                $condition = substr($condition,0,-1);
+                                
+                                $condition .= ")";
+                                
+                                
+                                $products = getProductbyCondition($condition);
+                                
+                            }
+                            $ContPro = getWebUrl() . '/' . getContentProductRoot();
                             echo '<div class="row">
 									<div class="col-xs-12">
 										<h3 class="header smaller lighter blue">Completed Order</h3>
@@ -434,7 +449,7 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
 																<span class="lbl"></span>
 															</label>
 														</th>
-														<th class="hidden-480">Product ID</th>
+														<th class="hidden-480">Product</th>
 														<th class="hidden-480">Quantity</th>
 														<th class="hidden-480">Size</th>
 														<th class="hidden-480">Price</th>
@@ -450,6 +465,7 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
 												<tbody>';
 												foreach($Orders as $order)
 												{
+												    $product = getObjbyCondition($products,"product_id",$order["product_id"]);
 												    echo'<tr>
 														<td class="center">
 															<label class="pos-rel">
@@ -458,7 +474,7 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
 															</label>
 														</td>
 
-														<td class="hidden-480">' . $order["product_id"] .'</td>
+														<td class="hidden-480"><a href="' . $ContPro . '/' . $product["linkProduct"] . '">' . $order["product_id"] . ' - ' . $product["product_name"] .'</a></td>
 														<td class="hidden-480">'. $order["quantity"] .'</td>
 														<td class="hidden-480">' . getObjbyCondition($Sizes,"size_id",$order["size_id"])["size_name"] . '</td>
 														<td>$' . $order["cost"] . '</td>
@@ -483,6 +499,24 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
                             $Orders = getObjsbyCondition($Orders,"ischeckoutcompleted",0);
                             $Sizes = getSizes("");
                             $Statuss = getStatus();
+                            $products;
+                            if(count($Orders) > 0)
+                            {
+                                $condition = "`product_id` IN (";
+                                
+                                foreach($Orders as $order)
+                                {
+                                    $condition .= $order["product_id"] . ","; 
+                                }
+                                $condition = substr($condition,0,-1);
+                                
+                                $condition .= ")";
+                                
+                                
+                                $products = getProductbyCondition($condition);
+                                
+                            }
+                            $ContPro = getWebUrl() . '/' . getContentProductRoot();
                             echo '<div class="row">
 									<div class="col-xs-12">
 										<h3 class="header smaller lighter blue">UnCompleted Order</h3>
@@ -507,7 +541,7 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
 																<span class="lbl"></span>
 															</label>
 														</th>
-														<th class="hidden-480">Product ID</th>
+														<th class="hidden-480">Product</th>
 														<th class="hidden-480">Quantity</th>
 														<th class="hidden-480">Size</th>
 														<th class="hidden-480">Price</th>
@@ -523,6 +557,7 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
 												<tbody>';
 												foreach($Orders as $order)
 												{
+												    $product = getObjbyCondition($products,"product_id",$order["product_id"]);
 												    echo'<tr>
 														<td class="center">
 															<label class="pos-rel">
@@ -531,7 +566,7 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
 															</label>
 														</td>
 
-														<td class="hidden-480">' . $order["product_id"] .'</td>
+														<td class="hidden-480"><a href="' . $ContPro . '/' . $product["linkProduct"] . '">' . $order["product_id"] . ' - ' . $product["product_name"] .'</a></td>
 														<td class="hidden-480">'. $order["quantity"] .'</td>
 														<td class="hidden-480">' . getObjbyCondition($Sizes,"size_id",$order["size_id"])["size_name"] . '</td>
 														<td>' . $order["cost"] . '</td>
@@ -793,5 +828,18 @@ Finally, you pay by Visa or Master Card or Paypal to Zeeping store and we commit
 		    ?>
 		</script>
 	</body> 
+<style>
+    .navbar {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    min-height: 45px;
+    background: #3baeff;
+}
+</style>
 </html> 
     

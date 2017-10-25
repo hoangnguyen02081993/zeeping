@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 		<!-- page specific plugin styles -->
-
+        <link rel="shortcut icon" href="<?php echo $WebUrl;  ?>/image/common/logo.ico" type="image/x-icon" />
 		<!-- text fonts -->
 		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
 
@@ -77,12 +77,14 @@
             $product_id = '';
             $size_id = '';
             $quantity = '1';
+			$isFront = '';
             if(isset($_POST["proInfo"]))
             {
                 $product_link = $_POST["product_link"];
                 $product_id = $_POST["product_id"];
                 $title = $_POST["title"];
                 $style_id = substr($_POST["proInfo"],strpos($_POST["proInfo"], 'st: "') + 5,strpos($_POST["proInfo"], '!') - strpos($_POST["proInfo"], 'st: "') - 5);
+				$isFront = $_POST["vision"] == "0" ? "btn_sau" : "btn_truoc";
             }
             else
             {
@@ -97,6 +99,7 @@
                 $d = $product["product_image_design"];
                 $style_design = $product["style_design"];
                 $cl = $order["color_id"] . '!' . getColorbyId($order["color_id"])["color_value"];
+		$isFront = $product["isFrontVision"] == 1 ? "btn_truoc" : "btn_sau";
                 
             }
             $SizeList = getSizes('where `size_id` in (' . getStylebyId($style_id)["style_listsize"] . ')');
@@ -137,25 +140,21 @@
 									<div class="col-sm-10 col-sm-offset-1">
 									    <div class="widget-header widget-header-large">
 												<h3 class="widget-title grey lighter">
-													<img src="http://zeeping.com/image/common/logo.png" style="height:49.2px;width:90.5px;margin-right:35%"></img>
+													<img src="/image/common/logo.png" style="height:49.2px;width:90.5px;margin-right:35%"></img>
 													<b style="font-size:1.325em">Delivery </b>
 												</h3>
 												
 
 												<div class="widget-toolbar no-border invoice-info">
 													<span class="invoice-info-label">Invoice:</span>
-													<span class="red">#69696969</span>
+													<span class="red"><?php echo "ZO" . ((isset($_POST["proInfo"]))? "???????": sprintf("%'.07d\n", $order["order_id"])); ?></span>
 
 													<br>
 													<span class="invoice-info-label">Date:</span>
-													<span class="blue">20/04/2017</span>
+													<span class="blue"><?php echo ((isset($_POST["proInfo"])) ? "??/??/?????" : date("d/m/Y", strtotime($order["createDate"]))); ?></span>
 												</div>
 
-												<div class="widget-toolbar hidden-480">
-													<a href="#">
-														<i class="ace-icon fa fa-print"></i>
-													</a>
-												</div>
+												
 											</div>
 											
 										<div class="widget-box transparent">
@@ -178,8 +177,6 @@
                                                                         <div name="img-style" id="img-style" style="width:280px;height:353px;background-size:cover">
                                                                             <img name="img-design" id="img-design" style="width:50px;height:60px" src=""></img>
                                                                         </div> 
-                                                                        <button class="btn" id="btn_truoc" type="button" style="float:left;margin-left:13%;width:30%;height:40px;color:#000000" onclick="changedSurface(this.id)">Front</button>
-                                                                        <button class="btn" id="btn_sau"type="button" style="float:left;margin-left:15%;width:30%;height:40px;color:#000000" onclick="changedSurface(this.id)">Behind</button>
                                                                     </div>
                                                                     </li>
                                                                     
@@ -200,7 +197,8 @@
 																<ul class="list-unstyled  spaced">
 																	<li>
 																	    <div >
-																		 <b><a   style="font-size:25px" href="<?php echo $product_link; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $title; ?></a></b>
+																		 <!--.<b><a   style="font-size:25px" href="<?php echo $product_link; ?>" target="_blank" title="<?php echo $title; ?>"><?php echo $title; ?></a></b>--> 
+																		 <b   style="font-size:25px"   title="<?php echo $title; ?>"><?php echo $title; ?></b>
 																	    </div>
 																	</li>
 
@@ -317,10 +315,10 @@
 	    {
 	        
 	        document.getElementById("img-background").style.backgroundColor = pro_pro["cl"].split('!',2)[1];
-            document.getElementById("img-style").style.backgroundImage  = "url('http://zeeping.com/image/StyleImage/s" + pro_pro["st"].split('!',2)[0] + ".png')";
+            document.getElementById("img-style").style.backgroundImage  = "url('/image/StyleImage/s" + pro_pro["st"].split('!',2)[0] + ".png')";
             if(pro_pro["d"].split(",")[1] != "None")
             {
-                document.getElementById("img-design").src  = "http://zeeping.com/image/Design/" + pro_pro["d"].split(",")[1];
+                document.getElementById("img-design").src  = "/image/Design/" + pro_pro["d"].split(",")[1];
                 document.getElementById("img-design").style.visibility = "visible";
             }
             else
@@ -350,21 +348,21 @@
             document.getElementById("quantity_post").value = document.getElementById("quantity").value;
             document.getElementById("color_id_post").value = pro_pro["cl"].split('!',2)[0];
             
-            changedSurface("btn_truoc");
+            changedSurface("<?php echo $isFront;?>");
             
 	    } 
 	    
-	    
+	    	
         
         
 	    function changedSurface(obj)
         {
             if(obj == "btn_truoc")
             {
-                document.getElementById("img-style").style.backgroundImage = "url('http://zeeping.com/image/StyleImage/s" + style_id + ".png')";
+                document.getElementById("img-style").style.backgroundImage = "url('/image/StyleImage/s" + style_id + ".png')";
                 if(pro_pro["d"].split(",")[0] != "None")
                 {
-                    document.getElementById("img-design").src  = "http://zeeping.com/image/Design/" + pro_pro["d"].split(",")[0];
+                    document.getElementById("img-design").src  = "/image/Design/" + pro_pro["d"].split(",")[0];
                     document.getElementById("img-design").style.visibility = "visible";
                 }
                 else
@@ -384,10 +382,10 @@
             }
             else
             {
-                document.getElementById("img-style").style.backgroundImage = "url('http://zeeping.com/image/StyleImage/sh" + style_id + ".png')";
+                document.getElementById("img-style").style.backgroundImage = "url('/image/StyleImage/sh" + style_id + ".png')";
                 if(pro_pro["d"].split(",")[1] != "None")
                 {
-                    document.getElementById("img-design").src  = "http://zeeping.com/image/Design/" + pro_pro["d"].split(",")[1];
+                    document.getElementById("img-design").src  = "/image/Design/" + pro_pro["d"].split(",")[1];
                     document.getElementById("img-design").style.visibility = "visible";
                 }
                 else
@@ -395,8 +393,6 @@
                     document.getElementById("img-design").src  = "";
                     document.getElementById("img-design").style.visibility = "hidden";
                 }
-                document.getElementById("btn_truoc").disabled = false;
-                document.getElementById("btn_sau").disabled = true;
                 
             document.getElementById("img-design").style.marginLeft = parseInt(pro_pro["s"].split('@',2)[0].split('!',2)[0])*0.56 + "px";
             document.getElementById("img-design").style.marginTop = parseInt(pro_pro["s"].split('@',2)[0].split('!',2)[1])*0.56 + "px";

@@ -78,14 +78,14 @@
         return;
     }
     global $IsIndex;
-    $IsIndex = "true";
+    $IsIndex = true;
 ?>
 <?php include("./source/header.php"); ?>
 <div class="main">
 	<div class="wrap">
 		<div class="section group">
 		  <div class="cont span_2_of_3">
-		  	<h2 class="head">Featured Products</h2>
+		  	<h2 class="head" style="font-size:1.5em;color:#000000;font-weight: bold">Featured Products</h2>
 		  	<?php
 		  	    $Pros = getFeaturedProducts(6);
 		  	    $index = 0;
@@ -135,7 +135,7 @@
 			        </div>';
 		  	    }
 		  	?>
-		    <h2 class="head">News Products</h2>
+		    <h2 class="head" style="font-size:1.5em;color:#000000;font-weight: bold">News Products</h2>
 		  	<?php
 		  	    $Pros = getNewProducts(9);
 		  	    $index = 0;
@@ -186,7 +186,7 @@
 		  	    }
 		  	?>
 		  	
-	        <h2 class="head">Best Seller</h2>	
+	        <h2 class="head" style="font-size:1.5em;color:#000000;font-weight: bold">Best Seller</h2>	
             <?php
 		  	    $Pros = getBestSellerProducts(6);
 		  	    $index = 0;
@@ -290,18 +290,160 @@
 			        <br/>
 			        <li border: solid> </li>
                     <li style="text-align:left">Name: </li>
-                    <li style="text-align:left"><textarea id="tabnamereview" rows="1" cols="30" placeholder="Name..." style="font-size:16px; height:25px; width:100%" form="reviewform" name="name" ><?php echo $userinfo["fullname"]; ?></textarea></li>
+                    <li style="text-align:left"><textarea id="tabnamereview" rows="1" cols="30"  style="font-size:16px; height:25px; width:100%" form="reviewform" name="name" ><?php echo $userinfo["fullname"]; ?></textarea></li>
                     <br/>
                     <li style="text-align:left">Comment: </li>
-                    <li style="text-align:left"><textarea id="tacommentreview" rows="5" cols="30" placeholder="Comment..." style="font-size:16px; width:100%" form="reviewform" name="comment"></textarea></li>
+                    <li style="text-align:left"><textarea id="tacommentreview" rows="5" cols="30"  style="font-size:16px; width:100%" form="reviewform" name="comment"></textarea></li>
                     </ul>
                     <input id="ipuserreview" type="hidden" name="user" value="<?php echo $userinfo["usernamemd5"]; ?>">
                     <div class="subscribe" ><input type="submit" name="Send" value="Send"   ></div>
                 </form>
 			</div>
 	    </div>
-	   <div class="clear"></div>
+	   
+	   
+	   <div cont span_3_of_3>
+
+	<a href="<?php echo $WebUrl . '/' ?>"><img style="width:100%"src="<?php echo $WebUrl . '/' ?>image/common/banner-mid.png" /></a>
+	   </div>  
+            <div class="clear"></div>
+			
+            <div class="top-box" style="padding-top:3%">
+            <blockquote class="col_3_of_3 span_3_of_3">
+           <h2 style="font-size:1.325em;text-align:center;color:#777;margin-top:1%">The release of Zeeping</h2>
+            <div class="inner_content clearfix" style="text-align:justify">
+            
+                 Understanding the increasing demand for shopping and constantly aiming to improve the shopping experience in world market. 
+                 <br><br>ZEEPING is released as specialized online T-shirt store website, now we mainly serve T-shirt with Army designs (veteran, military, navy us,..).
+                 <br><br>The final aim, ZEEPING will become online store where you can find and buy anything.
+             
+            </div>
+            </blockquote>
+            </div>
+            
+            <div class="top-box">
+            <blockquote class="col_3_of_3 span_3_of_3">
+            <h2 style="font-size:1.325em;text-align:center;color:#777;margin-top:1%">Zeeping supply designed fashionable and meaningful T-shirt with high quality</h2>
+            <div class="inner_content clearfix" style="text-align:justify">
+            
+                 ZEEPING is a specialized online T-shirt store website, we supply designed fashionable and meaningful T-shirt with high quality.
+                 <br><br>We are the go-to-place for anyone looking to realize their creative ideas on designs.
+                 <br><br>Moreover, we always ready to receive your ideas design from you with special price to design.
+                
+            </div>
+            </blockquote>
+            </div>
+            
+            <div class="top-box">
+            <blockquote class="col_3_of_3 span_3_of_3">
+            <h2 style="font-size:1.325em;text-align:center;color:#777;margin-top:1%">Zeeping with the trend of military style tshirt</h2>
+            <div class="inner_content clearfix" style="text-align:justify">
+            
+                 At ZEEPING, you will easily find the fashion item that suits each individual needs of each person and especially always adhere to fashion trends and even on over the world.
+                 <br><br>Not only is it easy to choose style, when shopping at ZEEPING fashion, you can also refer to and compare the different the same product, ensuring the find the item that you actually pleasure but also extremely suitable for his pocketbook.
+                 
+            </div>
+            </blockquote>
+            </div>
+            
+			<div class="clear"></div>
+            
+			
+	    <div class="top-box">
+	    <blockquote class="col_3_of_3 span_3_of_3">
+            <h2 style="font-size:1.325em;text-align:center;color:#777;margin-top:1%">Zeeping-where you find quality of military t-shirt and principal services</h2>
+            <div class="inner_content clearfix" style="text-align:justify">
+           
+                 Proudly developed from the leading online shopping website ZEEPING will continue to affirm the location of shopping destination.
+                 <br><br>In addition to the diversified and varied product range, ZEEPING Online is always investing in upgrading services from aftermarket policies, professional customer care team, delivery, payment methods and security. 
+                 <br><br>Especially if the product is damaged after deliver, you can get your money back with a free 30 days return policy. 
+				 <br><br>Sure, you will have satisfaction with quality products and services in each shopping at ZEEPING.
+				 
+            </div>
+            </blockquote>
+            </div>
+	    
+	    <div class="top-box">	
+            <blockquote class="col_3_of_3 span_3_of_3">
+            <h2 style="font-size:1.325em;text-align:center;color:#777;margin-top:1%">Zeeping has many promotion</h2>
+            <div class="inner_content clearfix" style="text-align:justify">
+                 With policy, “ more buy more discount “.  ZEEPING always gives customer the best condition to get more clothing for yourself. We have many level discount for our loyal customer from “ Normal Member … Super Golden Member “ , you can get 25% discount with highest level.
+                 <br><br>Now, you can the primary promotion at HERE!
+                 
+            </div>
+            </blockquote>
+            </div>
+            
+            
+            
+            <div class="clear"></div>
+	    </div>
+			
+	<div class="clear"></div>		
 	</div>
 	</div>
 	</div>
+	
 <?php include("./source/footer.php"); ?>
+
+<style>
+blockquote{
+  display:block;
+  background: #fff;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+  
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #666;
+  text-align: justify;
+  
+  /*Borders - (Optional)*/
+  border-left: 15px solid #c76c0c;
+  border-right: 2px solid #c76c0c;
+  
+  /*Box Shadow - (Optional)*/
+  -moz-box-shadow: 2px 2px 15px #ccc;
+  -webkit-box-shadow: 2px 2px 15px #ccc;
+  box-shadow: 2px 2px 15px #ccc;
+}
+
+blockquote::before{
+  content: "\201C"; /*Unicode for Left Double Quote*/
+  
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+  
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+blockquote::after{
+  /*Reset to make sure*/
+  content: "";
+}
+
+blockquote a{
+  text-decoration: none;
+  background: #eee;
+  cursor: pointer;
+  padding: 0 3px;
+  color: #c76c0c;
+}
+
+blockquote a:hover{
+ color: #666;
+}
+
+blockquote em{
+  font-style: italic;
+}
+</style>

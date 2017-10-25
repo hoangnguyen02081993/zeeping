@@ -22,10 +22,10 @@ function get_client_ip($SERVER) {
     return $ipaddress;
 }
 function curPageURL($SERVER) {
-     $pageURL = 'http';
-     if ($SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+     $pageURL = 'https';
+     
      $pageURL .= "://";
-     if ($SERVER["SERVER_PORT"] != "80") {
+     if ($SERVER["SERVER_PORT"] != "443") {
       $pageURL .= $SERVER["SERVER_NAME"].":".$SERVER["SERVER_PORT"].$SERVER["REQUEST_URI"];
      } else {
       $pageURL .= $SERVER["SERVER_NAME"].$SERVER["REQUEST_URI"];
@@ -112,7 +112,7 @@ function getObjbyCondition($list,$columnName,$value)
 {
     foreach($list as $item)
     {
-        if($item["$columnName"] == $value)
+        if($item[$columnName] == $value)
         {
             return $item;
         }
@@ -156,6 +156,13 @@ function checkExprieDay($day,$count)
 {
     $cpmDate = date('Y-m-d') ; //current date
     return ((strtotime($cpmDate) - strtotime($day)) / (60 * 60 * 24) > $count) ? true : false;
+}
+function checkExprieMinutes($day,$count)
+{
+    $cpmDate = date('Y-m-d h:i:s') ; //current date
+    echo "cpmDate " . $cpmDate . "\n";
+    echo (strtotime($cpmDate) - strtotime($day)) / 60;
+    return ((strtotime($cpmDate) - strtotime($day)) / 60  > $count) ? true : false;
 }
 function removeAllspecialcharwithoutSpace($str)
 {

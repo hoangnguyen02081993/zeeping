@@ -30,7 +30,7 @@
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
-
+        <link rel="shortcut icon" href="<?php echo $WebUrl;  ?>/image/common/logo.ico" type="image/x-icon" />
 		<!-- ace settings handler -->
 		<script src="assets/js/ace-extra.min.js"></script>
 
@@ -105,24 +105,20 @@
 									<div class="col-sm-10 col-sm-offset-1">
 									    <div class="widget-header widget-header-large">
 												<h3 class="widget-title grey lighter">
-													<img src="http://zeeping.com/image/common/logo.png" style="height:49.2px;width:90.5px;margin-right:35%"></img>
+													<img src="/image/common/logo.png" style="height:49.2px;width:90.5px;margin-right:35%"></img>
 													<b style="font-size:1.325em">Checkout </b>
 												</h3>
 
 												<div class="widget-toolbar no-border invoice-info">
 													<span class="invoice-info-label">Invoice:</span>
-													<span class="red">#121212</span>
+													<span class="red"><?php echo "ZO" . sprintf("%'.07d\n", $OrderInfo["order_id"]); ?></span>
 
 													<br>
 													<span class="invoice-info-label">Date:</span>
-													<span class="blue">04/04/2014</span>
+													<span class="blue"><?php echo date("d/m/Y", strtotime($OrderInfo["createDate"])); ?></span>
 												</div>
 
-												<div class="widget-toolbar hidden-480">
-													<a href="#">
-														<i class="ace-icon fa fa-print"></i>
-													</a>
-												</div>
+												
 											</div>
 										<div class="widget-box transparent">
 											
@@ -182,28 +178,37 @@
 																		<div style="margin-top:8%">
 																		  <span style="font-size:20px;padding-right:15px">Basic Price :</span>
 																		
-																		 <b><span class="black" style="float:right;padding-right:2%;padding-top:1%"><?php echo $OrderInfo["quantity"] . ' x $' . (getCostafterPromosion($style["style_cost"],$promosion) + $size[0]["size_additional_cost"]); ?> </span></b>
+																		 
+																		 <b><span class="black" style="float:right;padding-right:2%;padding-top:1%;"><span style="color:#b8bdc5;padding-right:10px"><?php echo $OrderInfo["quantity"]."x"; ?></span> 
+																		 
+																		     <?php echo " $" . (getCostafterPromosion($style["style_cost"]) + $size[0]["size_additional_cost"]); ?> 
+																		     </span></b>
 																		 <div class="hr hr8 hr-double hr-dotted"></div>
 																		 </div>
 																	</li>
 
+																	
+
+																	<li>
+																		<div style="margin-top:8%">
+																		<span style="font-size:20px;padding-right:15px;color:#ed3e80">Discount:</span>
+																		
+																		
+																		<b><span class="black" style="float:right;padding-right:2%;padding-top:1%;color:#ed3e80"><?php echo (100-getCostafterPromosion(100,$promosion))."%"." ($".((100-getCostafterPromosion(100,$promosion))*(getCostafterPromosion((($style["style_cost"] + $size[0]["size_additional_cost"]) * $OrderInfo["quantity"])))/100).")" ;?></span></b>
+						
+																		
+																		</div> 
+																		<div class="hr hr8 hr-double hr-dotted"></div>
+																		
+																	</li>
+																	
 																	<li>
 																		<div style="margin-top:8%">
 																		<span style="font-size:20px;padding-right:15px">Shipping:</span>
 																	
 																		<b><span class="black" style="float:right;padding-right:2%;padding-top:1%"> <?php echo '$'. getCostShipCountry($country,$OrderInfo["quantity"]); ?> </span></b>
-																		<div class="hr hr8 hr-double hr-dotted"></div>
+																		
 																		</div>
-																	</li>
-
-																	<li>
-																		<div style="margin-top:8%">
-																		<span style="font-size:20px;padding-right:15px">Sub-total:</span>
-																		
-																		<b><span class="black" style="float:right;padding-right:2%;padding-top:1%"> <?php echo '$'. (getCostafterPromosion($style["style_cost"],$promosion) + $size[0]["size_additional_cost"]) * $OrderInfo["quantity"]; ?> </b>
-																		
-																		</div> 
-																		
 																	</li>
 
 																</ul>
@@ -230,16 +235,6 @@
 
 												
 													<div class="wizard-actions">
-    														<form name="frmDeliveryNext" id="frmDeliveryNext" action="./action/deliveryaction.php" method="post">
-                                                      		    <input type="hidden" name="style_id" value="<?php echo $style_id; ?>"></input>
-                                                      		    <input type="hidden" id="color_id_post" name="color_id" value="<?php echo split ("!", $cl)[0]; ?>"></input>
-                                                      		    <input type="hidden" id="size_id_post" name="size_id" value=""></input>
-                                                      		    <input type="hidden" id="quantity_post" name="quantity" value=""></input>
-                                                      		    <input type="hidden" id="product_id_post" name="product_id" value="<?php echo $product_id; ?>"></input>
-                                                      		    <input type="hidden" name="username" value="<?php if(isset($_POST["username"])) { echo $_POST["username"];  } ?>"></input>
-                                                      		    <input type="hidden" name="g" value="<?php if(isset($_POST["g"])) { echo $_POST["g"];  } ?>"></input>
-                                                      		</form>
-                                                      		
                                                       		<form class="form-horizontal" id="frmcheckoutPre" method="post" novalidate="novalidate" action="./confirm.php">
                                                                 <input type="hidden" name="g" value="<?php echo $OrderInfo["guid"]; ?>"></input>
                                                                 <input type="hidden" name="isaction" value="1"></input>
@@ -250,11 +245,10 @@
 															</button>
 															
 															<div  id="paypal-button-container" style="width:200px;float:right"></div>
+															<div id="hidden_form_container" style="display:none;"></div>
+															
 
-															<!--<button class="btn btn-success btn-next" data-last="Finish" tyle="submit" form="frmDeliveryNext">
-    															Next
-    															<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
-															</button> -->
+															
 											            </div>
 
 													<div class="space-6"></div>
@@ -348,45 +342,53 @@
             <?php
                 echo $product["style_design"] . ';';
                 echo 'var product_design = "' . $product["product_image_design"] . '";';
+		echo 'var isFront = '. $product["isFrontVision"] . ';';
             ?>
-            if(product_design.split(",")[0] != "None")
-            {
-                document.getElementById("img-design").src  = "http://zeeping.com/image/Design/" + product_design.split(",")[0];
-                document.getElementById("img-design").style.visibility = "visible";
+			
+			if(isFront)
+			{			
+				if(product_design.split(",")[0] != "None")
+				{
+					document.getElementById("img-design").src  = "/image/Design/" + product_design.split(",")[0];
+					document.getElementById("img-design").style.visibility = "visible";
                 
-                document.getElementById("img-design").style.marginLeft = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["t"].split('@',2)[0].split('!',2)[0] * 0.56) + "px";
-                document.getElementById("img-design").style.marginTop = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["t"].split('@',2)[0].split('!',2)[1] * 0.56) + "px";
-                document.getElementById("img-design").style.width = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["t"].split('@',2)[1].split('!',2)[0] * 0.56) + "px";
-                document.getElementById("img-design").style.height = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["t"].split('@',2)[1].split('!',2)[1] * 0.56) + "px";
-            }
-            else
-            {
-                document.getElementById("img-design").src  = "";
-                document.getElementById("img-design").style.visibility = "hidden";
-            }
+					document.getElementById("img-design").style.marginLeft = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["t"].split('@',2)[0].split('!',2)[0] * 0.56) + "px";
+					document.getElementById("img-design").style.marginTop = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["t"].split('@',2)[0].split('!',2)[1] * 0.56) + "px";
+					document.getElementById("img-design").style.width = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["t"].split('@',2)[1].split('!',2)[0] * 0.56) + "px";
+					document.getElementById("img-design").style.height = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["t"].split('@',2)[1].split('!',2)[1] * 0.56) + "px";
+				}
+				else
+				{
+					document.getElementById("img-design").src  = "";
+					document.getElementById("img-design").style.visibility = "hidden";
+				}
             
-            document.getElementById("img-background").style.backgroundColor = "<?php echo $color["color_value"]; ?>";
-            document.getElementById("img-style").style.backgroundImage = "url(\'http://zeeping.com/image/StyleImage/s<?php echo $OrderInfo["style_id"]; ?>.png\')";
+				document.getElementById("img-background").style.backgroundColor = "<?php echo $color["color_value"]; ?>";
+				document.getElementById("img-style").style.backgroundImage = "url(\'/image/StyleImage/s<?php echo $OrderInfo["style_id"]; ?>.png\')";
+			}
+			else
+			{
+				if(product_design.split(",")[1] != "None")
+				{
+					document.getElementById("img-design").src  = "/image/Design/" + product_design.split(",")[1];
+					document.getElementById("img-design").style.visibility = "visible";
+                
+					document.getElementById("img-design").style.marginLeft = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["s"].split('@',2)[0].split('!',2)[0] * 0.56) + "px";
+					document.getElementById("img-design").style.marginTop = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["s"].split('@',2)[0].split('!',2)[1] * 0.56) + "px";
+					document.getElementById("img-design").style.width = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["s"].split('@',2)[1].split('!',2)[0] * 0.56) + "px";
+					document.getElementById("img-design").style.height = (product_pro["s<?php echo $OrderInfo["style_id"]; ?>"]["s"].split('@',2)[1].split('!',2)[1] * 0.56) + "px";
+				}
+				else
+				{
+					document.getElementById("img-design").src  = "";
+					document.getElementById("img-design").style.visibility = "hidden";
+				}
+            
+				document.getElementById("img-background").style.backgroundColor = "<?php echo $color["color_value"]; ?>";
+				document.getElementById("img-style").style.backgroundImage = "url(\'/image/StyleImage/sh<?php echo $OrderInfo["style_id"]; ?>.png\')";
+			}
         }
         Init();
-        function postRefreshPage () {
-          var theForm, inputg;
-          theForm = document.createElement("form");
-          theForm.action = "./action/checkoutaction.php";
-          theForm.method = "post";
-          inputg = document.createElement("input");
-          inputg.type = "hidden";
-          inputg.name = "g";
-          inputg.value = "<?php echo $_POST["g"];?>";
-          inputc = document.createElement("input");
-          inputc.type = "hidden";
-          inputc.name = "c";
-          inputc.value = "<?php echo ((getCostafterPromosion($style["style_cost"],$promosion) + $size[0]["size_additional_cost"]) * $OrderInfo["quantity"] + getCostShipCountry($country,$OrderInfo["quantity"]));?>";
-          theForm.appendChild(inputg);
-          theForm.appendChild(inputc);
-          document.getElementById("hidden_form_container").appendChild(theForm);
-          theForm.submit();
-        }
   </script>
 
 </body>

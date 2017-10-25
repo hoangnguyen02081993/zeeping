@@ -1,4 +1,4 @@
-<?php  //include("./config/config.php"); ?>
+<?php header('HTTP/1.0 404 Not Found');?>
 <?php include("./source/header.php"); ?>
     <div class="login">
        <div class="wrap">
@@ -8,4 +8,4 @@
         </div> 
     </div>
 
-<?php include("./source/footer.php"); ?>
+<?php include("./source/footer.php");?>

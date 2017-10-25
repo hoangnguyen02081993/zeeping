@@ -18,13 +18,15 @@ if(isset($_POST["submit"]))
     $MailInfo = array(
         'email' => "",
         'style_id' => "",
-        'color_id' => ""
+        'color_id' => "",
+        'product_id' => ""
     );
             
             
     $MailInfo["email"] = $_POST["email"];
     $MailInfo["style_id"] = $_POST["style_id"];
     $MailInfo["color_id"] = $_POST["color_id"];
+    $MailInfo["product_id"] = $_POST["product_id"];
             
     AddTrackingMail($MailInfo);
     

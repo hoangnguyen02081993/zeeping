@@ -121,6 +121,46 @@ function IsHaveProduct($product_link)
     return $result;
 }
 
+function CheckAndUpdateInforgot($username,$password)
+{
+    $conn = db_connect();
+    
+    $sql_query = "SELECT * from `order_user_forgot_password` where `username` = '" . $username . "' and `newpassword` = '" . md5($password) . "'";
+    
+    $rs_query = mysql_query($sql_query,$conn);
+    if(mysql_num_rows($rs_query) == 1)
+    {
+        $id = mysql_fetch_assoc($rs_query)["id"];
+        $sql_query = "UPDATE `order_user` SET `password`='" . md5($password) ."' WHERE `username` = '". $username . "'";
+        echo $sql_query;
+        mysql_query($sql_query,$conn);
+        $sql_query = "DELETE FROM `order_user_forgot_password` WHERE `id` = " . $id;
+        mysql_query($sql_query,$conn);
+        echo $id;
+    }
+    
+    db_disconnect($conn);
+}
+function ExistedForgot($username)
+{
+    
+    $result = null;
+    
+    $conn = db_connect();
+    
+    $sql_query = "SELECT * from `order_user_forgot_password` where `username` = '" . $username . "'";
+    
+    $rs_query = mysql_query($sql_query,$conn);
+    if(mysql_num_rows($rs_query) == 1)
+    {
+        $result = mysql_fetch_assoc($rs_query);
+    }
+    
+    db_disconnect($conn);
+    
+    return $result;
+}
+
 
 /*------------------------------select----------------------------------------------------------------------------------------------*/
 
@@ -202,6 +242,25 @@ function getProductbyId($id)
     db_disconnect($conn);
     
     return mysql_fetch_assoc($rs_query);
+}
+function getProductbyCondition($condition)
+{
+    $ProList = array();
+    
+    $conn = db_connect();
+    
+    $sql_query = "SELECT * FROM `order_product`" . (($condition == "" )? "" : "where " . $condition ) ;
+    
+    $rs_query = mysql_query($sql_query,$conn);
+    
+    $row;
+    while($row=mysql_fetch_array($rs_query)){
+        array_push($ProList, $row);
+    }
+    
+    db_disconnect($conn);
+    
+    return $ProList;
 }
 function getColorbyId($id)
 {
@@ -452,6 +511,37 @@ function getImageCollectgionsRoot()
     
     return $result;
 }
+
+function getUserGmailSupport()
+{
+    $result = Array(
+        "user" => "",
+        "password" => ""
+        );
+    
+    $conn = db_connect();
+    
+    $sql_query = "SELECT * FROM `order_options` where `option_name` = 'UserGmailSupport' or `option_name` = 'PasswordGmailSupport'"  ;
+    
+    $rs_query = mysql_query($sql_query,$conn);
+    
+    $row;
+    while($row=mysql_fetch_array($rs_query)){
+        if($row["option_name"] == 'UserGmailSupport')
+        {
+            $result["user"] = $row["option_value"];
+        }
+        else
+        {
+            $result["password"] = $row["option_value"];
+        }
+    }
+    
+    db_disconnect($conn);
+    
+    return $result;
+}
+
 function getAllMenuWeb()
 {
     $MenuList = array();
@@ -674,6 +764,25 @@ function getTestimonials($count)
     
     return $TestimonialList;
 }
+function getproductRatebyPI($product_id)
+{
+    $RateList = array();
+    
+    $conn = db_connect();
+    
+    $sql_query = "SELECT * FROM `order_product_rate` where `product_id` = " . $product_id;
+    
+    $rs_query = mysql_query($sql_query,$conn);
+    
+    $row;
+    while($row=mysql_fetch_array($rs_query)){
+        array_push($RateList, $row);
+    }
+    
+    db_disconnect($conn);
+    
+    return $RateList;
+}
 function getCollectionbyId($id)
 {
     
@@ -687,6 +796,15 @@ function getCollectionbyId($id)
     db_disconnect($conn);
     
     return mysql_fetch_assoc($rs_query);
+}
+function getaverageRate($RateList)
+{
+    $point = 0;
+    foreach($RateList as $Rate)
+    {
+        $point += $Rate["rate"];
+    }
+    return $point / count($RateList);
 }
 /*------------------------------insert-----------------------------------------------------------------------------------------*/
 
@@ -727,7 +845,7 @@ function AddTrackingMail($MailInfo)
     
     $conn = db_connect();
     
-    $sql_query = "INSERT INTO `order_mail_tracking`( `email`, `style_id`, `color_id`, `date`) VALUES ('". $_POST["email"] . "','" . $_POST["style_id"] . "','" .  $_POST["color_id"] . "',NOW())";
+    $sql_query = "INSERT INTO `order_mail_tracking`( `email`, `product_id` , `style_id`, `color_id`, `date`) VALUES ('". $MailInfo["email"] . "','" . $MailInfo["product_id"] . "','" . $MailInfo["style_id"] . "','" .  $MailInfo["color_id"] . "',NOW())";
     
     //echo $sql_query;
     
@@ -834,6 +952,33 @@ function InsertReview($reviewInfo)
     $sql_query .= "'" . str_replace("'", "\'", $reviewInfo["comment"]) . "',";
     $sql_query .= "'" . str_replace("'", "\'", $reviewInfo["name"]) . "',";
     $sql_query .= "'" . str_replace("'", "\'", $reviewInfo["username"]) . "'";
+    $sql_query .= ")";
+    
+    //echo $sql_query;
+    
+    $rs_query = mysql_query($sql_query,$conn);
+    
+    if($rs_query == true)
+    {
+        $result = true;
+    }
+    
+    db_disconnect($conn);
+    
+    return $result;
+}
+function InsertForgotPassword($forgotinfo)
+{
+    $result = false;
+    
+    
+    $conn = db_connect();
+    
+    $sql_query = "INSERT INTO `order_user_forgot_password`(`username`, `newpassword`, `fullname`) VALUES (";
+    
+    $sql_query .= "'" . str_replace("'", "\'", $forgotinfo["username"]) . "',";
+    $sql_query .= "'" . str_replace("'", "\'", md5($forgotinfo["newpassword"])) . "',";
+    $sql_query .= "'" . str_replace("'", "\'", $forgotinfo["fullname"]) . "'";
     $sql_query .= ")";
     
     //echo $sql_query;
@@ -1057,6 +1202,32 @@ function UpdateOrderStep3($guid,$cost)
     $sql_query .= "`ischeckoutcompleted`= '1', `cost` = " . $cost;
     
     $sql_query .= "WHERE `guid` = '" . $guid . "'";
+    
+    //echo $sql_query;
+    
+    $rs_query = mysql_query($sql_query,$conn);
+    
+    if($rs_query == true)
+    {
+        $result = true;
+    }
+    
+    db_disconnect($conn);
+    
+    return $result;
+}
+
+function UpdateForgot($forgotinfo)
+{
+    $result = false;
+    
+    $conn = db_connect();
+    
+    $sql_query = "UPDATE `order_user_forgot_password` SET ";
+    
+    $sql_query .= "`createddate`= NOW(), `newpassword`= '" . md5($forgotinfo["newpassword"]) . "'";
+    
+    $sql_query .= "WHERE `id` = '" . $forgotinfo["id"] . "'";
     
     //echo $sql_query;
     
