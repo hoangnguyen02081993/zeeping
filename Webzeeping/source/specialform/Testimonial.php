@@ -29,7 +29,7 @@
                             {
                                 echo '<p style="font-size: 18px">' . $Testimonial["testimonial"] . '</p>';
                                 echo '<div style="text-align: right; font-size: 16px"> By ' . $Testimonial["createguest"] . '</div>';
-                                echo '<div style="text-align: right; font-size: 16px">' . date_format(date_create($Testimonial["createdDate"]), "Y-m-d") . '</div>';
+                                echo '<div style="text-align: right; font-size: 16px">' . date_format(date_create($Testimonial["createdate"]), "Y-m-d") . '</div>';
                                 echo '<br/>';
                             }
                         ?>

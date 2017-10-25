@@ -20,7 +20,8 @@
 					        <ul class="f-list1">
 					            <li><a href="<?php echo $WebUrl . '/zeeping-point-system';?>">Zeeping point system</a></li>
 				                <li><a href="<?php echo $WebUrl . '/Testimonials';?>">Testimonials</a></li>
-			                </ul>
+				                <li><a href="<?php echo $WebUrl . '/zeeping-size-guide';?>">Size Guide</a></li>    
+                            </ul>
  				  </div>
 				  <div class="col_1_of_f_2 span_1_of_f_2">
 			        <h3>Help center</h3>
@@ -38,25 +39,24 @@
 				 <div class="col_1_of_f_2 span_1_of_f_2">
 			       <h3>Customer service</h3>
 						<ul class="f-list1">
-						    <li><a href="<?php echo $WebUrl . '/contact-us';?>">Contact us</a></li>
+						    <li><a href="<?php echo $WebUrl . '/customer/support.php';?>">Contact us</a></li>
 				            <li><a href="#">Track order</a></li>
-				            <li><a href="<?php echo $WebUrl . '/zeeping';?>">Zeeping</a></li>
 			         	</ul>
  				 </div>
 				 <div class="col_1_of_f_2 span_1_of_f_2">
 				     <h3>Our Store</h3>
 						<ul class="f-list1">
 						    <li><a href="<?php echo $WebUrl . '/about-us'?>">About us</a></li>
-				            <li><a href="#">Purchase Guideline</a></li>
+				            <li><a href="<?php echo $WebUrl . '/purchase-guideline'?>">Purchase Guideline</a></li>
 				            <li><a href="<?php echo $WebUrl . '/terms-conditions'?>">Terms & Conditions</a></li>
 				             <li><a href="<?php echo $WebUrl . '/privacy-security'?>">Privacy & security</a></li>
 			         	</ul>
 					   <div class="social-media">
 						     <ul>
-						        <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="Google"><a href="#" target="_blank"> </a></span></li>
+						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Google"><a href="#" target="_blank"> </a></span></li>
 						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Linked in"><a href="#" target="_blank"> </a> </span></li>
 						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Rss"><a href="#" target="_blank"> </a></span></li>
-						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Facebook"><a href="#" target="_blank"> </a></span></li>
+						        <li><span class="simptip-position-bottom simptip-movable" data-tooltip="Facebook"><a href="https://www.facebook.com/zeeping2017/" target="_blank"> </a></span></li>
 						    </ul>
 					   </div>
 				</div>

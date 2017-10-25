@@ -1,8 +1,8 @@
 <!--A Design by W3layouts
 Author: W3layout
-Author URL: http://w3layouts.com
+Author URL: https://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
+License URL: https://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 
@@ -21,10 +21,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 <title>Zeeping</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Zeeping is a specialized online military T-shirt store website, we supply designed fashionable and meaningful T-shirt with high quality.">
+<meta name="p:domain_verify" content="1014f5f3d05b40f99d9415b16ed2e0da"/>
+<meta name="p:domain_verify" content="b4e55886a7c241389e24a4c28131ba6b"/>
+<meta name="google-site-verification" content="gFPW0wo7xDX8Ftlh400krlq2KFZgMTrZQ-9fmT9HFME" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <link href="<?php echo $WebUrl;  ?>/source/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<?php echo $WebUrl; ?>/source/css/form.css" rel="stylesheet" type="text/css" media="all" />
-<link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="<?php echo $WebUrl ?>/source/js/jquery1.min.js"></script>
 <!-- start menu -->
 <link href="<?php echo $WebUrl; ?>/source/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
@@ -53,6 +58,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 </script>
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6459093012487681",
+    enable_page_level_ads: true
+  });
+</script>
+
+<!-- Google tracking ip -->
+<script type=”text/javascript” src=”http://l2.io/ip.js?var=myip”></script>
+<script>
+(function(i,s,o,g,r,a,m){i[‘GoogleAnalyticsObject’]=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,’script’,’//www.google-analytics.com/analytics.js’,’ga’);
+
+ga(‘create’, ‘UA-97459916-1, ‘auto’);
+ga(‘send’, ‘pageview’, {
+‘dimension1’: myip
+});
+</script>
+
 
 <!-- Facebook Pixel Code -->
 <script>
@@ -69,6 +96,20 @@ src="https://www.facebook.com/tr?id=1150066615114177&ev=PageView&noscript=1"
 /></noscript>
  <!--DO NOT MODIFY -->
 <!-- End Facebook Pixel Code -->
+
+<!-- Pinterest Code -->
+<script type="text/javascript">
+!function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+
+pintrk('load','2620036741724');
+pintrk('page');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt=""
+src="https://ct.pinterest.com/v3/?tid=2620036741724&noscript=1" />
+</noscript>
+<!-- End Pinterest Code -->
+
 <style>
     .zeeping-color
     {
@@ -79,13 +120,19 @@ src="https://www.facebook.com/tr?id=1150066615114177&ev=PageView&noscript=1"
 <body>
      <div class="header-top zeeping-color">
 	   <div class="wrap">
-	            
+	            <div class="header-top-left">
+			  	   
+   				      
+   				   
+   				    
+   				    <div class="clear"></div>
+   			 </div>
 			  
 			<div class="cssmenu">
 				<ul>
-				    <li><a href="http://zeeping.com/about-us">About Zeeping</a></li>|
-					<li class="active"><a href="http://zeeping.com/about-shipping">About Shipping</a></li> | 
-					<li><a href="http://zeeping.com/about-payment">About Payment</a></li> |
+				    <li><H1 style="visibility:hidden">Zeeping</H1></li>
+				    <li><a href="<?php echo $WebUrl . '/' ?>purchase-guideline">Purchase Guideline</a></li>|
+					
 					<li> <a>
 					    <?php 
                         global $username; 
@@ -165,12 +212,43 @@ src="https://www.facebook.com/tr?id=1150066615114177&ev=PageView&noscript=1"
 			    </ul>
 			</div>
 		</div>
-		    <div class="header-botton-right" >
-		            <form class="search"  name="frmLogin" action="http://zeeping.com/source/search.php" method="POST">	  
+		    <div class="header-bottom-right" >
+		            <form class="search"  name="frmLogin" action="https://zeeping.com/source/search.php" method="POST">	  
 				        <input type="text" name="s" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" >
 				        <input type="submit" value="Subscribe" id="submit" name="submit">
 				        <div id="response"> </div>
 		            </form>
+		            <?php
+		                if($username != "")
+		                {
+		                    $Orders = getOrderbyUser($username);
+		                    $Orders = getObjsbyCondition($Orders,"ischeckoutcompleted",0);
+		                    echo '<div class="tag-list">
+                	    <ul class="icon1 sub-icon1 profile_img">
+                			<li><a class="active-icon c1" href="/zeeping-point-system">
+                			</a>
+                				<ul class="sub-icon1 list">
+                					<li><h3>Zeeping point system</h3><a href=""></a></li>
+                					<li><p><a href="/zeeping-point-system">Earn Zeeping Points to Save Money</a></a></p></li>
+                				</ul>
+                			</li>
+                		</ul>
+                		<ul class="icon1 sub-icon1 profile_img">
+                			<li><a class="active-icon c2" href="/customer/index.php?a=3.2">' .
+                			    ((count($Orders) == 0)? '' : '<span class="count-cart">'. count($Orders) .'
+                			    </span>'). ' </a>
+                				<ul class="sub-icon1 list">
+                					<li><h3>' .
+                			    ((count($Orders) == 0)? 'No' : count($Orders)). ' Products</h3><a href=""></a></li>
+                					<li><p><a href="#"></a></p></li>
+                				</ul>
+                			</li>
+                		</ul>
+	    <ul class="last"><li><a href="/customer/index.php?a=3.2">Cart('. count($Orders) .')</a></li></ul>
+	  </div>';
+		                }
+		            ?>
+		            
 		    </div>
      <div class="clear"></div>
      </div>
@@ -178,7 +256,7 @@ src="https://www.facebook.com/tr?id=1150066615114177&ev=PageView&noscript=1"
   <!-- start slider -->
   <?php
     global $IsIndex;
-    if($IsIndex != "true")
+    if(!$IsIndex)
     {
         return;
     }
@@ -208,7 +286,7 @@ src="https://www.facebook.com/tr?id=1150066615114177&ev=PageView&noscript=1"
                 <img src="<?php echo $WebUrl . '/' ?>image/common/banner2.jpg" alt=""/>
                 <div class="slide_content">
                     <div class="slide_content_wrap">
-                        <h4 class="title">Love</h4>
+                        <h4 class="title">American Spirit</h4>
                         <p class="description">We save freedom which is for us, but for person behind us</p>
                     </div>
                 </div>
@@ -253,3 +331,17 @@ src="https://www.facebook.com/tr?id=1150066615114177&ev=PageView&noscript=1"
         <div class="slideNext" style="right: 0px; top: 184px; opacity: 0.5;"><span></span></div>
     </div>
     <!--/slider -->
+	
+	<!--cover -->
+	<div id="cover-background" style="position:fixed;top:0;left:0;width:100%;height:2000px;z-index:199;background-color:black;opacity:0.6" onclick="converClick();"></div>
+	<div id="cover" style="position:fixed;top:0;left:0;width:100%;height:2000px;z-index:200;background-color:transparent" onclick="converClick();">
+		<img src="/image/common/cover.png" style="width:60%;height:300px;margin-top:10%;margin-left:20%"></img>
+	</div>
+	<script>
+		function converClick()
+		{
+			document.getElementById("cover-background").style.display = "None";
+			document.getElementById("cover").style.display = "None";
+		}
+	</script>
+	<!--/cover -->

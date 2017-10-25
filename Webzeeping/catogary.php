@@ -110,10 +110,10 @@
 			        <br/>
 			        <li border: solid> </li>
                     <li style="text-align:left">Name: </li>
-                    <li style="text-align:left"><textarea id="tabnamereview" rows="1" cols="30" placeholder="Name..." style="font-size:16px; height:25px; width:100%" form="reviewform" name="name" ><?php echo $userinfo["fullname"]; ?></textarea></li>
+                    <li style="text-align:left"><textarea id="tabnamereview" rows="1" cols="30"  style="font-size:16px; height:25px; width:100%" form="reviewform" name="name" ><?php echo $userinfo["fullname"]; ?></textarea></li>
                     <br/>
                     <li style="text-align:left">Comment: </li>
-                    <li style="text-align:left"><textarea id="tacommentreview" rows="5" cols="30" placeholder="Comment..." style="font-size:16px; width:100%" form="reviewform" name="comment"></textarea></li>
+                    <li style="text-align:left"><textarea id="tacommentreview" rows="5" cols="30"  style="font-size:16px; width:100%" form="reviewform" name="comment"></textarea></li>
                     </ul>
                     <input id="ipuserreview" type="hidden" name="user" value="<?php echo $userinfo["usernamemd5"]; ?>">
                     <div class="subscribe" ><input type="submit" name="Send" value="Send"   ></div>

@@ -4,7 +4,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title>Register - Zeeping</title>
-
+        <link rel="shortcut icon" href="<?php echo $WebUrl;  ?>/image/common/logo.ico" type="image/x-icon" />
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -46,7 +46,7 @@
 	
 <body>
 <?php
-    if(!isset($_POST["proInfo"]) || !isset($_POST["product_link"]))
+    if(!isset($_POST["proInfo"]) || !isset($_POST["product_link"]) || !isset($_POST["product_id"]))
     {
         echo 'Error 404';
         return;
@@ -92,7 +92,7 @@
                                             			<li>
                                             				<span>
                                             					<img src="http://zeeping.com/image/common/logo.png" style="height:49.2px;width:90.5px;margin-right:3%"></img>
-                                                            	<input type="email" form="frmBuyDirect" name="email" id="email" placeholder="e-mail" style="width:250px" required />
+                                                            	<input type="email" form="frmBuyDirect" name="email" id="email" placeholder="E-Mail" style="width:250px" required />
                                                             	
                                                             </span>
                                             			</li>
@@ -104,7 +104,9 @@
                                             			</li>
                                                     	<li>
                                             	<div class="hr hr8 hr-double hr-dotted"></div>
-                                					 <i>Please make sure that you choose this T-shirt to buy with Teespring at our store. We’ll check and supply Zeeping’s account for you if you were completely bought  at our website. <br/><br/>Unless you make sure that T- shirt, please come back to choose fit size, color for you. <i>
+                                					 <i>Please make sure that you choose this T-shirt to buy with Teespring at our store. We’ll check and supply Zeeping’s account for you if you were completely bought  at our website. 
+                                					 <br/><br/>Unless you make sure that T- shirt, please come back to choose fit size, color for you. 
+                                					 <br/><br/>Sign in for a <strong>10% discount </strong>on your next purchase <i>
                                 						<div class="hr hr8 hr-double hr-dotted"></div>
                                             		</li>
                                                 </ul>
@@ -116,6 +118,7 @@
                                     												        
                                                                                   		    <input type="hidden" id="style_id" name="style_id" value=""></input>
                                                                                             <input type="hidden" id="color_id" name="color_id" value=""></input>
+                                                                                            <input type="hidden" id="color_id" name="product_id" value="<?php echo $_POST["product_id"]; ?>"></input>
                                                                                             <?php echo'<input type="hidden" name="url" value="'.$_POST["product_link"].'"></input>'; ?>
                                     														<i class="ace-icon fa fa-shopping-cart bigger-110" ></i>
                                     														<span >Buy</span>

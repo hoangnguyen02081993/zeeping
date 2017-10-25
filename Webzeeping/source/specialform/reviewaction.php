@@ -4,7 +4,7 @@
     if(!isset($_POST["Send"]))
     {
         echo '<script>
-        window.location.assign(\'http://zeeping.com/\');
+        window.location.assign(\'https://zeeping.com/\');
         </script>';
         return;
     }
@@ -13,7 +13,7 @@
     if(!isset($_POST["user"]))
     {
         echo '<script>
-        window.location.assign(\'http://zeeping.com/\');
+        window.location.assign(\'https://zeeping.com/\');
         </script>';
         return;
     }
@@ -68,6 +68,6 @@
 
 
     echo '<script>
-    window.location.assign(\'http://zeeping.com/\');
+    window.location.assign(\'https://zeeping.com/\');
     </script>';
 ?>

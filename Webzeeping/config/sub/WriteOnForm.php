@@ -4,6 +4,10 @@
 function writePostFormbyProductLink($product_link)
 {
     global $WebUrl;
+    global $username;
+    
+    
+    $RateList = getproductRatebyPI($product_id);
     
     $result = '';
 
@@ -20,7 +24,43 @@ function writePostFormbyProductLink($product_link)
         $style_list = $order_product["style_list"];
         $color_list = $order_product["color_list"];
         $product_id = $order_product["product_id"];
+	$isfront = $order_product["isFrontVision"];
+        $result .="
+<style>
+    div.stars {
+  width: 270px;
+}
 
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\\f006';
+  font-family: FontAwesome;
+}
+</style>";
         $result .= '<script>
                     ' . $order_product["style_design"] . ';
                     var product_design = "' . $order_product["product_image_design"] . '";
@@ -29,10 +69,29 @@ function writePostFormbyProductLink($product_link)
                     var cl = "";
                     var t = "";
                     var s = "";
-                    var isfront = true;
+                    var isfront = "' . !$isfront . '";
+                    var isfrontdefault = "' . !$isfront . '";
                     var desc1content = "' . $order_product["product_content"] . '";
-                    var desc2content = "(Đây là thông tin infomation)";
-                    var desc3content = "(Đây là thông tin Review)";
+                    var desc2content = "ZPC: ' . $order_product["product_id"] . '";
+                    var desc3content = "There are ' . ((count($RateList) == 0) ? 'any ' : count($RateList)) . ' people(s) review this product      \
+        <div><div class=\"stars\" style=\"float:left\">      \
+  <form action=\"\">      \
+    <input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\" ' . (($username == '') ? 'disabled' :((getObjbyCondition($RateList,"username", $username) != null) ? 'disabled' : '')) . '/>      \
+    <label class=\"star star-5\" for=\"star-5\"></label>      \
+    <input class=\"star star-4\" id=\"star-4\" type=\"radio\" name=\"star\" ' . (($username == '') ? 'disabled' :((getObjbyCondition($RateList,"username", $username) != null) ? 'disabled' : '')) . '/>      \
+    <label class=\"star star-4\" for=\"star-4\"></label>      \
+    <input class=\"star star-3\" id=\"star-3\" type=\"radio\" name=\"star\" ' . (($username == '') ? 'disabled' :((getObjbyCondition($RateList,"username", $username) != null) ? 'disabled' : '')) . '/>      \
+    <label class=\"star star-3\" for=\"star-3\"></label>      \
+    <input class=\"star star-2\" id=\"star-2\" type=\"radio\" name=\"star\" ' . (($username == '') ? 'disabled' :((getObjbyCondition($RateList,"username", $username) != null) ? 'disabled' : '')) . '/>      \
+    <label class=\"star star-2\" for=\"star-2\"></label>      \
+    <input class=\"star star-1\" id=\"star-1\" type=\"radio\" name=\"star\" ' . (($username == '') ? 'disabled' :((getObjbyCondition($RateList,"username", $username) != null) ? 'disabled' : '')) . '/>      \
+    <label class=\"star star-1\" for=\"star-1\"></label>      \
+  </form>      \
+</div>        \
+      ' . (($username == '') ? '' : ((getObjbyCondition($RateList,"username", $username) != null) ? '<span style=\"font-size:10pt;\"><i>(You are already review)</i></span>' :'<button type=\"submit\" name=\"submit\" style=\"float:left;margin-left:10px;margin-top:20px\"> Review IT</button>     \ ')) .
+      '<div class=\"clear\"></div></div>      \
+<div><span style=\"font-size:10pt;\"><i>(This result is average of all reviews)</i></span></div>";
+                    
         </script>
         <link href="' . $WebUrl . '/source/css/product-style.css" rel="stylesheet" type="text/css" media="all" />
     <div class="top-box top-box-product" style="padding-left:0%;padding-right:0%">
@@ -40,9 +99,9 @@ function writePostFormbyProductLink($product_link)
             <div class="inner_content clearfix width-height-100" style="padding:0px">
 				<div name="image-region" class="width-height-100"> 
                     <div name="img-blackground" id="img-background" class="width-height-100">
-                        <div name="img-style" id="img-style" class="width-height-100" style="background-image: url(\'http://zeeping.com/image/StyleImage/s'. explode (",", $style_list)[0] . '.png\')">
+                        <div name="img-style" id="img-style" class="width-height-100" style="background-image: url(\'/image/StyleImage/s'. explode (",", $style_list)[0] . '.png\')">
                             <img name="img-design" id="img-design" src=""></img>
-                            <img name="img-front-behide" id="img-front-behide" src="http://zeeping.com/image/common/front-behide.png" onclick="changedSurface()"></img>
+                            <img name="img-front-behide" id="img-front-behide" src="/image/common/front-behide.png" onclick="changedSurface()"></img>
                         </div> 
                     </div> 
                 </div>
@@ -68,26 +127,24 @@ function writePostFormbyProductLink($product_link)
                     $result .= '</select><br>
                     <div class="collection-title"><strong>Color:</strong></div><br>
                     <div id="color_region"></div><br>
-                    <form name="frmLinkProduct" action="http://zeeping.com/order/action/trackingpage.php" method="post">
+                    <form name="frmLinkProduct" action="/order/action/trackingpage.php" method="post">
                         <input type="hidden" name="product_link" value="' . $order_product["product_link"] . ' "></input>
                         <button class="btn-buy" type="submit" name="submit" value="Buy with Teespring" >
                         <a style="color:#fff">Teespring</a>
                         </button>
                     </form><br>
                     <form name="frmBuyDirect" ';
-                global $username; 
                 if($username == '')
 		        {
-                    $result .= 'action="http://zeeping.com/customer/confirminfo.php" method="post" onsubmit="return getValue()">
+                    $result .= 'action="/customer/confirminfo.php" method="post" onsubmit="return getValue()">
                                 <input type="hidden" name="product_link" value="' . $order_product["product_link"] . ' "></input>'; // thong so link teespring
 		        }
 		        else
 		        {
-		            $result .= 'action="http://zeeping.com/order/delivery.php" method="post" onsubmit="return getValue()">
+		            $result .= 'action="/order/delivery.php" method="post" onsubmit="return getValue()">
 		                        <input type="hidden" name="product_link" value="' . $order_product["product_link"] . ' "></input>
             		            <input type="hidden" name="title" value="' . $order_product["product_title"] . ' "></input>
-            		            <input type="hidden" name="username" value="' . $username . '"></input>
-            		            <input type="hidden" name="product_id" value="' . $product_id . ' "></input>'; // thong so title
+            		            <input type="hidden" name="username" value="' . $username . '"></input>'; // thong so title
 		        }
                                 
                     $result .= '<button class="btn-buy" type="submit" name="submit" value="Buy with Zeeping" 
@@ -95,15 +152,9 @@ function writePostFormbyProductLink($product_link)
                                 </button>       
                                 <input type="hidden" name="isaction" value="1"></input>
                                 <input type="hidden" id="proInfo" name="proInfo" value=""></input>
+                                <input type="hidden" name="product_id" value="' . $product_id . ' "></input>
+								<input type="hidden" name="vision" value="' . $isfront . '"></input>
                     </form>';
-                //if($username == '')
-		        //{
-                //    global $wp;
-		      //       $result .= '<form name="frmLogin1" action="http://zeeping.com/customer/login.php" method="post" style="width:100%">                          
-            //                        <input class="input-login" type="submit" name="action" value="LOGIN" style="margin-top:10px;margin-bottom:15px;font-size:100%;margin-left:70%"></input>
-             //                       <input type="hidden" name="url" value="'. curPageURL($_SERVER) .'"></input>
-              //                  </form></div>';
-		       // }
             $result .= '</div>
         </div>
         <div class="clear"></div>
@@ -111,8 +162,9 @@ function writePostFormbyProductLink($product_link)
     
     <div class="top-box top-box-product">
         <div class="col_1_of_3 span_2_of_3_content box-shadow-none" > 
-        <hr/>
+        
             <div class="inner_content clearfix">
+            <hr/>
                 <table>
                     <tr>
                         <th><span id="des1" class="tabdes" onclick="ChooseDes(1)">Description</span></th>
@@ -120,8 +172,10 @@ function writePostFormbyProductLink($product_link)
                         <th><span id="des3" class="tabdes" onclick="ChooseDes(3)">Review</th>
                     </tr>
                 </table>
+                
                 <br/>
-                <span id="desc-content">' . $order_product["product_content"]  . '</span>
+                <span id="desc-content">' . $order_product["product_content"]  . '</span><hr/>
+                
             </div>
         </div>
         <div class="clear"></div>
@@ -149,7 +203,6 @@ function writeLoginMain($SERVER, $COOKIE)
     $username= '';
     
     $echostring = '';
-    //$echostring .= '<div id="loginregion" style="width:100%;height:40px">';
     
     if(isset($COOKIE["session_id"]))
     {
@@ -158,13 +211,12 @@ function writeLoginMain($SERVER, $COOKIE)
         if($username != '')
         {
             $Userfullname = getUserFullname($username);
-            //height:35px;width:150px;margin:0px;background-color:#4cb1ca
             $echostring .= '
-            <form action="http://zeeping.com/customer/index.php"  method="POST">
+            <form action="/customer/index.php"  method="POST">
                 <button type="submit" name="action" value="Login" style="background-color:Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow:hidden;outline:none;">
                     <div>
                          
-                        <span style="color:#fff;font-size:1.325em"><a href="http://zeeping.com/customer/" style="color:#fff;font-size:1.325em">'. $Userfullname .'</a></span>
+                        <span style="color:#fff;font-size:1.325em"><a href="/customer/" style="color:#fff;font-size:1.325em">'. $Userfullname .'</a></span>
                     </div>
                 </button>
             </form>'; 
@@ -172,7 +224,7 @@ function writeLoginMain($SERVER, $COOKIE)
         else
         {
             $echostring .= '
-            <form action="http://zeeping.com/customer/login.php"  method="POST">
+            <form action="/customer/login.php"  method="POST">
                 <input type="hidden" name="url" value="'. curPageURL($SERVER) . '"/>
                 <button type="submit" name="action" value="Login" style="background-color:Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow:hidden;outline:none"">
                     <div>
@@ -186,7 +238,7 @@ function writeLoginMain($SERVER, $COOKIE)
     else
     {
         $echostring .= '
-            <form action="http://zeeping.com/customer/login.php"  method="POST">
+            <form action="/customer/login.php"  method="POST">
                 <input type="hidden" name="url" value="'. curPageURL($SERVER) . '"/>
                 <button type="submit" name="action" value="Login" style="background-color:Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow:hidden;outline:none;">
                     <div>
@@ -197,8 +249,6 @@ function writeLoginMain($SERVER, $COOKIE)
             </form>
         '; 
     }
-    
-    //$echostring .= '</div>';
     
     echo $echostring;
     

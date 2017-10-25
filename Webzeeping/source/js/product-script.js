@@ -1,6 +1,6 @@
 function reload_product_image(IschangedStyle,obj){
     if(IschangedStyle == true){
-        isfront = false;
+        isfront = isfrontdefault;
         style_id = obj;
         var lstColor = product_pro["s" + obj]["cl"].split(",");
         var i = 0;
@@ -23,13 +23,6 @@ function reload_product_image(IschangedStyle,obj){
         changedSurface();
         reload_product_image(false,"c" + lstColor[0]);
         
-        var test = (parseInt(product_pro["s" + style_id]["t"].split('@',2)[0].split('!',2)[0])*100/530);
-        
-        document.getElementById("img-design").style.marginLeft = (parseInt(product_pro["s" + style_id]["t"].split('@',2)[0].split('!',2)[0])*100/530) + "%";
-        document.getElementById("img-design").style.marginTop = (parseInt(product_pro["s" + style_id]["t"].split('@',2)[0].split('!',2)[1])*100/530) + "%";
-        document.getElementById("img-design").style.width = (parseInt(product_pro["s" + style_id]["t"].split('@',2)[1].split('!',2)[0])*100/530) + "%";
-        document.getElementById("img-design").style.height = (parseInt(product_pro["s" + style_id]["t"].split('@',2)[1].split('!',2)[1])*100/630) + "%";
-        
         t = product_pro["s" + obj]["t"];
         s = product_pro["s" + obj]["s"]
         
@@ -49,10 +42,10 @@ function changedSurface()
     if(isfront == false)
     {
         isfront = true;
-        document.getElementById("img-style").style.backgroundImage = "url('http://zeeping.com/image/StyleImage/s" + style_id + ".png')";
+        document.getElementById("img-style").style.backgroundImage = "url('/image/StyleImage/s" + style_id + ".png')";
         if(product_design.split(",")[0] != "None")
         {
-            document.getElementById("img-design").src  = "http://zeeping.com/image/Design/" + product_design.split(",")[0];
+            document.getElementById("img-design").src  = "/image/Design/" + product_design.split(",")[0];
             document.getElementById("img-design").style.visibility = "visible";
         }
         else
@@ -71,10 +64,10 @@ function changedSurface()
     else
     {
         isfront = false;
-        document.getElementById("img-style").style.backgroundImage = "url('http://zeeping.com/image/StyleImage/sh" + style_id + ".png')";
+        document.getElementById("img-style").style.backgroundImage = "url('/image/StyleImage/sh" + style_id + ".png')";
         if(product_design.split(",")[1] != "None")
         {
-            document.getElementById("img-design").src  = "http://zeeping.com/image/Design/" + product_design.split(",")[1];
+            document.getElementById("img-design").src  = "/image/Design/" + product_design.split(",")[1];
             document.getElementById("img-design").style.visibility = "visible";
         }
         else
